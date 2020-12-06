@@ -11,13 +11,20 @@ class GameState():
     def __init__(self):
         self.worldSize = Vector2(WORLD_MAX_X, WORLD_MAX_Y)
         self.units = [
-            GeneralBlock(True, True, Vector2(100, 10), 'test.gif'),
-            GeneralBlock(True, True, Vector2(300, 10), 'test.gif')
+            GeneralBlock(True, True, Vector2(0, 0), 'pics/blue_test.png'),
+            GeneralBlock(True, True, Vector2(90, 0), 'pics/blue_test.png'),
+            GeneralBlock(False, True, Vector2(60, 0), 'pics/white_test.png'),
+            GeneralBlock(False, True, Vector2(60, 60), 'pics/white_test.png'),
         ]
-
-    def update(self, moveCommand):
+        self.collideCheckGroup = pygame.sprite.Group()
         for unit in self.units:
-            unit.move(moveCommand)
+            if not unit.is_move():
+                self.collideCheckGroup.add(unit)
+
+    def update_move(self, moveCommand, moveTarget):
+        for unit in self.units:
+            if unit == moveTarget:
+                unit.move(moveCommand, self.collideCheckGroup)
 
 class UserInterface():
     def __init__(self):
@@ -31,7 +38,8 @@ class UserInterface():
         self._moveCommand = Vector2(0, 0)
 
     def _update(self):
-        self._gameState.update(self._moveCommand)
+        for unit in self._gameState.units:
+            self._gameState.update_move(self._moveCommand, unit)
 
     def _process_input(self):
         self._moveCommand = Vector2(0, 0)
@@ -44,16 +52,16 @@ class UserInterface():
                     self._running = False
                     break
                 elif event.key == pygame.K_RIGHT:
-                    self._moveCommand.x = 29
+                    self._moveCommand.x = CELL_SIZE_X
                 elif event.key == pygame.K_LEFT:
-                    self._moveCommand.x = -29
+                    self._moveCommand.x = -CELL_SIZE_X
                 elif event.key == pygame.K_DOWN:
-                    self._moveCommand.y = 29
+                    self._moveCommand.y = CELL_SIZE_X
                 elif event.key == pygame.K_UP:
-                    self._moveCommand.y = -29
+                    self._moveCommand.y = -CELL_SIZE_X
 
     def _render_unit(self, unit):
-        self._window.blit(unit.texture, unit.location, unit.rect)
+        self._window.blit(unit.texture, unit.location)
 
     def _render(self):
         self._window.fill(BACKGROUND_COLOR)  # 黑色背景
