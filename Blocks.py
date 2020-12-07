@@ -1,4 +1,5 @@
 import pygame
+from pygame._sprite import AbstractGroup
 from pygame.rect import Rect
 from pygame.math import Vector2
 
@@ -20,4 +21,59 @@ class GeneralBlock(BaseBlock):
                     or self._is_collide(group):
                 self.location -= direction
                 self.rect = Rect(self.location.x, self.location.y, CELL_SIZE_X, CELL_SIZE_Y)
-print('sblj')
+
+class HotVerbBlock(BaseBlock):
+    def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
+                 *groups: AbstractGroup,word: str):
+        super().__init__(id,moveable,controllable,location,texture,*groups)
+        self.word = word
+        self._controllable = False
+        self.moveable = True
+    '''if(melt) -> defeat'''
+
+class StopVerbBlock(BaseBlock):
+    def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
+                 *groups: AbstractGroup,word: str):
+        super().__init__(id,moveable,controllable,location,texture,*groups)
+        self.word = word
+        self._controllable = False
+        self.moveable = True
+    '''if(block) -> block.moveable = False'''
+
+class PushVerbBlock(BaseBlock):
+    def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
+                 *groups: AbstractGroup, word: str):
+        super().__init__(id, moveable, controllable, location, texture, *groups)
+        self.word = word
+        self._controllable = False
+        self.moveable = True
+    '''if(block) -> block.moveable = True'''
+
+class WinVerbBlock(BaseBlock):
+    def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
+                 *groups: AbstractGroup, word: str):
+        super().__init__(id, moveable, controllable, location, texture, *groups)
+        self.word = word
+        self._controllable = False
+        self.moveable = True
+    '''if(touch) -> win'''
+
+class DefeatVerbBlock(BaseBlock):
+    def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
+                 *groups: AbstractGroup, word: str):
+        super().__init__(id, moveable, controllable, location, texture, *groups)
+        self.word = word
+        self._controllable = False
+        self.moveable = True
+    '''if(touch) -> defeat'''
+
+class MeltVerbBlock(BaseBlock):
+    def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
+                 *groups: AbstractGroup, word: str):
+        super().__init__(id, moveable, controllable, location, texture, *groups)
+        self.word = word
+        self._controllable = False
+        self.moveable = True
+    '''if(touch -> hot) -> defeat'''
+
+#class SinkVerbBlock(BaseBlock):
