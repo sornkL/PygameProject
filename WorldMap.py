@@ -79,6 +79,7 @@ class UserInterface():
             self._render()
             self._clock.tick(60)
 
+
 if __name__ == '__main__':
     ui = UserInterface()
     ui.run()
