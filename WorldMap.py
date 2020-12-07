@@ -11,11 +11,16 @@ from Settings import *
 class GameState():
     def __init__(self):
         self.worldSize = Vector2(WORLD_MAX_X, WORLD_MAX_Y)
+        self.playerState = False  # 游戏状态，True表示获胜状态
         self.units = [
-            GeneralBlock("test01", True, True, Vector2(0, 0), 'pics/blue_test.png'),
-            GeneralBlock("test02", True, True, Vector2(90, 0), 'pics/blue_test.png'),
-            GeneralBlock("test03", False, True, Vector2(60, 0), 'pics/white_test.png'),
-            GeneralBlock("test04", False, True, Vector2(60, 60), 'pics/white_test.png'),
+            GeneralBlock("test01", False, True, True, Vector2(0, 0), 'pics/blue_test.png'),
+            GeneralBlock("test02", False, True, True, Vector2(90, 0), 'pics/blue_test.png'),
+            GeneralNounBlock("testNoun", True, False, True, Vector2(300, 30), 'pics/white_test.png', 'wall'),
+            GeneralNounBlock("testNoun2", True, False, True, Vector2(330, 0), 'pics/white_test.png', 'wall'),
+            IsBlock("testIs", True, False, True, Vector2(330, 30), 'pics/red_test.png', 'is'),
+            GeneralVerbBlock("testVerb", True, False, True, Vector2(360, 30), 'pics/white_test.png', 'win'),
+            GeneralVerbBlock("testVerb2", True, False, True, Vector2(330, 60), 'pics/white_test.png', 'win')
+
         ]
         self.collideCheckGroup = pygame.sprite.Group()
         for unit in self.units:
@@ -41,6 +46,11 @@ class UserInterface():
     def _update(self):
         for unit in self._gameState.units:
             self._gameState.update_move(self._moveCommand, unit)
+            ''' 测试_is_grammar_valid()
+            test = GameRuleObserver(self._gameState)
+            if unit._id == "testIs":
+                print(test._is_grammar_valid(unit))
+            '''
 
     def _process_input(self):
         self._moveCommand = Vector2(0, 0)

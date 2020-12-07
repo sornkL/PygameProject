@@ -35,3 +35,34 @@ class GameRuleObserver():
             blocksAroundList.append(self._is_exist(objectBlock, direction))
 
         return blocksAroundList
+
+    def _is_grammar_valid(self, objectBlock: Union[GeneralBlock]) -> list:
+        """
+
+        :return: 如果谓词分析后，上-is-下（或左-is-右）合法（Noun. + is + Verb.），则返回前后方块的信息，否则返回None
+        """
+
+        _isGrammarValid = [None] * 4
+        _blocksAroundList = self._observe(objectBlock)
+        for i in range(0, len(_blocksAroundList), 2):
+            _firstBlock = _blocksAroundList[i]
+            _secondBlock = _blocksAroundList[i+1]
+            if _firstBlock is not None and _secondBlock is not None:
+                if _firstBlock._text and _secondBlock._text:
+                    if _firstBlock._word in NOUN_WORD_BANK and _secondBlock._word in VERB_WORD_BANK:
+                        _isGrammarValid[i] = _firstBlock
+                        _isGrammarValid[i+1] = _secondBlock
+
+        return _isGrammarValid
+
+    def _predicate_analyze(self):
+        """
+        谓词分析：对谓词"is"的四个方向进行检测，上-is-下（或左-is-右）可以继续进行谓词分析
+        :return:
+        """
+        pass
+
+    def _is_win(self, objectBlock: Union[GeneralBlock]):
+        pass
+
+
