@@ -20,5 +20,4 @@ class GeneralBlock(BaseBlock):
                     or self._is_collide(group):
                 self.location -= direction
                 self.rect = Rect(self.location.x, self.location.y, CELL_SIZE_X, CELL_SIZE_Y)
-
-print('sblnw')
+print('sblj')
