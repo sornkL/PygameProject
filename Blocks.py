@@ -25,70 +25,76 @@ class GeneralBlock(BaseBlock):
 
 class YouVerbBlock(BaseBlock):
     def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
-                 *groups: AbstractGroup, word: str):
+                 word: str, *groups: AbstractGroup):
         super().__init__(id, moveable, controllable, location, texture, *groups)
         self.word = word
         self._controllable = False
         self.moveable = True
     '''if(blocks) -> block.controllable = True'''
-
+    '''baba.YouVerbBlock(...)'''
 
 class HotVerbBlock(BaseBlock):
     def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
-                 *groups: AbstractGroup, word: str):
+                 word: str, *groups: AbstractGroup):
         super().__init__(id, moveable, controllable, location, texture, *groups)
         self.word = word
         self._controllable = False
         self.moveable = True
     '''if(melt) -> defeat'''
+    '''Lava.HotVerbBlock(...)'''
 
 
 class StopVerbBlock(BaseBlock):
     def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
-                 *groups: AbstractGroup, word: str):
+                 word: str, *groups: AbstractGroup):
         super().__init__(id, moveable, controllable, location, texture, *groups)
         self.word = word
         self._controllable = False
         self.moveable = True
     '''if(block) -> block.moveable = False'''
+    '''Wall.StopVerbBlock(...)'''
 
 class PushVerbBlock(BaseBlock):
     def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
-                 *groups: AbstractGroup, word: str):
+                 word: str, *groups: AbstractGroup):
         super().__init__(id, moveable, controllable, location, texture, *groups)
         self.word = word
         self._controllable = False
         self.moveable = True
     '''if(block) -> block.moveable = True'''
+    '''Stone.PushVerbBlock(...)'''
 
 
 class WinVerbBlock(BaseBlock):
     def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
-                 *groups: AbstractGroup, word: str):
+                 word: str, *groups: AbstractGroup):
         super().__init__(id, moveable, controllable, location, texture, *groups)
         self.word = word
         self._controllable = False
         self.moveable = True
     '''if(touch) -> win'''
+    '''flag.WinVerbBlock(...)'''
 
 
 class DefeatVerbBlock(BaseBlock):
     def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
-                 *groups: AbstractGroup, word: str):
+                 word: str, *groups: AbstractGroup):
         super().__init__(id, moveable, controllable, location, texture, *groups)
         self.word = word
         self._controllable = False
         self.moveable = True
     '''if(touch) -> defeat'''
+    '''skull.DefeatVerbBlock(...)'''
 
 
 class MeltVerbBlock(BaseBlock):
     def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
-                 *groups: AbstractGroup, word: str):
+                 word: str, *groups: AbstractGroup):
         super().__init__(id, moveable, controllable, location, texture, *groups)
         self.word = word
         self._controllable = False
         self.moveable = True
     '''if(touch -> hot) -> defeat'''
+    '''xxx.MeltVerbBlock(...)'''
 
 # class SinkVerbBlock(BaseBlock):
