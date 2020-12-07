@@ -8,9 +8,10 @@ from pygame.sprite import AbstractGroup
 
 
 class BaseBlock(pygame.sprite.Sprite):
-    def __init__(self, moveable: bool, controllable: bool, location: Vector2, texture: str, *groups: AbstractGroup,
+    def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str, *groups: AbstractGroup,
                  **kwargs):
         """
+        :param id: 每个关卡方块的唯一编号
         :param moveable: 方块是否可以移动
         :param controllable: 方块是否可以被控制
         :param location: 方块的初始位置
@@ -19,6 +20,7 @@ class BaseBlock(pygame.sprite.Sprite):
         """
 
         super().__init__(*groups)
+        self._id = id
         self._moveable = moveable
         self._controllable = controllable
         self.location = location

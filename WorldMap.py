@@ -4,6 +4,7 @@ from pygame.math import Vector2
 from pygame.rect import Rect
 
 from Blocks import *
+from GameRule import GameRuleObserver
 from Settings import *
 
 
@@ -11,10 +12,10 @@ class GameState():
     def __init__(self):
         self.worldSize = Vector2(WORLD_MAX_X, WORLD_MAX_Y)
         self.units = [
-            GeneralBlock(True, True, Vector2(0, 0), 'pics/blue_test.png'),
-            GeneralBlock(True, True, Vector2(90, 0), 'pics/blue_test.png'),
-            GeneralBlock(False, True, Vector2(60, 0), 'pics/white_test.png'),
-            GeneralBlock(False, True, Vector2(60, 60), 'pics/white_test.png'),
+            GeneralBlock("test01", True, True, Vector2(0, 0), 'pics/blue_test.png'),
+            GeneralBlock("test02", True, True, Vector2(90, 0), 'pics/blue_test.png'),
+            GeneralBlock("test03", False, True, Vector2(60, 0), 'pics/white_test.png'),
+            GeneralBlock("test04", False, True, Vector2(60, 60), 'pics/white_test.png'),
         ]
         self.collideCheckGroup = pygame.sprite.Group()
         for unit in self.units:
@@ -78,7 +79,8 @@ class UserInterface():
             self._render()
             self._clock.tick(60)
 
-ui = UserInterface()
-ui.run()
+if __name__ == '__main__':
+    ui = UserInterface()
+    ui.run()
 
-pygame.quit()
+    pygame.quit()
