@@ -16,25 +16,37 @@ class GeneralBlock(BaseBlock):
             self.location += direction
             self.rect = Rect(self.location.x, self.location.y, CELL_SIZE_X, CELL_SIZE_Y)
 
-            if self.location.x < 0 or self.location.x >= WORLD_MAX_X*CELL_SIZE_X or self.location.y < 0 \
-                    or self.location.y >= WORLD_MAX_Y*CELL_SIZE_Y \
+            if self.location.x < 0 or self.location.x >= WORLD_MAX_X * CELL_SIZE_X or self.location.y < 0 \
+                    or self.location.y >= WORLD_MAX_Y * CELL_SIZE_Y \
                     or self._is_collide(group):
                 self.location -= direction
                 self.rect = Rect(self.location.x, self.location.y, CELL_SIZE_X, CELL_SIZE_Y)
 
+
+class YouVerbBlock(BaseBlock):
+    def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
+                 *groups: AbstractGroup, word: str):
+        super().__init__(id, moveable, controllable, location, texture, *groups)
+        self.word = word
+        self._controllable = False
+        self.moveable = True
+    '''if(blocks) -> block.controllable = True'''
+
+
 class HotVerbBlock(BaseBlock):
     def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
-                 *groups: AbstractGroup,word: str):
-        super().__init__(id,moveable,controllable,location,texture,*groups)
+                 *groups: AbstractGroup, word: str):
+        super().__init__(id, moveable, controllable, location, texture, *groups)
         self.word = word
         self._controllable = False
         self.moveable = True
     '''if(melt) -> defeat'''
 
+
 class StopVerbBlock(BaseBlock):
     def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
-                 *groups: AbstractGroup,word: str):
-        super().__init__(id,moveable,controllable,location,texture,*groups)
+                 *groups: AbstractGroup, word: str):
+        super().__init__(id, moveable, controllable, location, texture, *groups)
         self.word = word
         self._controllable = False
         self.moveable = True
@@ -49,6 +61,7 @@ class PushVerbBlock(BaseBlock):
         self.moveable = True
     '''if(block) -> block.moveable = True'''
 
+
 class WinVerbBlock(BaseBlock):
     def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
                  *groups: AbstractGroup, word: str):
@@ -57,6 +70,7 @@ class WinVerbBlock(BaseBlock):
         self._controllable = False
         self.moveable = True
     '''if(touch) -> win'''
+
 
 class DefeatVerbBlock(BaseBlock):
     def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
@@ -67,6 +81,7 @@ class DefeatVerbBlock(BaseBlock):
         self.moveable = True
     '''if(touch) -> defeat'''
 
+
 class MeltVerbBlock(BaseBlock):
     def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
                  *groups: AbstractGroup, word: str):
@@ -76,4 +91,4 @@ class MeltVerbBlock(BaseBlock):
         self.moveable = True
     '''if(touch -> hot) -> defeat'''
 
-#class SinkVerbBlock(BaseBlock):
+# class SinkVerbBlock(BaseBlock):
