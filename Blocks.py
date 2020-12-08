@@ -97,4 +97,42 @@ class MeltVerbBlock(BaseBlock):
     '''if(touch -> hot) -> defeat'''
     '''xxx.MeltVerbBlock(...)'''
 
-# class SinkVerbBlock(BaseBlock):
+class IsBlock(BaseBlock):
+    def __init__(self, id: str,text: bool, moveable: bool, controllable: bool, location: Vector2, texture: str,
+                 word: str, *groups: AbstractGroup):
+        super().__init__(id, text, moveable, controllable, location, texture, *groups)
+        self.word = word
+        self._controllable = False
+        self.moveable = True
+
+class BabaNounBlock(BaseBlock):
+    def __init__(self, id: str,text: bool, moveable: bool, controllable: bool, location: Vector2, texture: str,
+                 word: str, *groups: AbstractGroup):
+        super().__init__(id, text, moveable, controllable, location, texture, *groups)
+        self.word = word
+        self._controllable = False
+        self.moveable = True
+
+class StoneNounBlock(BaseBlock):
+    def __init__(self, id: str,text: bool, moveable: bool, controllable: bool, location: Vector2, texture: str,
+                 word: str, *groups: AbstractGroup):
+        super().__init__(id, text, moveable, controllable, location, texture, *groups)
+        self.word = word
+        self._controllable = False
+        self.moveable = True
+
+class WallNounBlock(BaseBlock):
+    def __init__(self, id: str,text: bool, moveable: bool, controllable: bool, location: Vector2, texture: str,
+                 word: str, *groups: AbstractGroup):
+        super().__init__(id, text, moveable, controllable, location, texture, *groups)
+        self.word = word
+        self._controllable = False
+        self.moveable = True
+
+class FlagNounBlock(BaseBlock):
+    def __init__(self, id: str,text: bool, moveable: bool, controllable: bool, location: Vector2, texture: str,
+                 word: str, *groups: AbstractGroup):
+        super().__init__(id, text, moveable, controllable, location, texture, *groups)
+        self.word = word
+        self._controllable = False
+        self.moveable = True

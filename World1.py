@@ -11,8 +11,9 @@ class GameStateWorldOne():
     def __init__(self):
         self.worldSize = Vector2(WORLD_MAX_X, WORLD_MAX_Y)
         self.units = [
-            GeneralBlock("test01", False, True, True, Vector2(420, 300), 'pics/baba_0_1.png'),
-            GeneralBlock("test04", False, False, True, Vector2(240, 210), 'pics/white_test.png'),
+            GeneralBlock("test01", False, True, True, Vector2(360, 270), 'pics/baba_0_1.png'),
+
+            GeneralBlock("test04", False, False, True, Vector2(240, 210), 'pics/wall_1_1.png'),
             GeneralBlock("test04", False, False, True, Vector2(270, 210), 'pics/white_test.png'),
             GeneralBlock("test04", False, False, True, Vector2(300, 210), 'pics/white_test.png'),
             GeneralBlock("test04", False, False, True, Vector2(330, 210), 'pics/white_test.png'),
@@ -25,8 +26,8 @@ class GameStateWorldOne():
             GeneralBlock("test04", False, False, True, Vector2(540, 210), 'pics/white_test.png'),
             GeneralBlock("test04", False, False, True, Vector2(570, 210), 'pics/white_test.png'),
             GeneralBlock("test04", False, False, True, Vector2(600, 210), 'pics/white_test.png'),
-            GeneralBlock("test04", False, False, True, Vector2(630, 210), 'pics/white_test.png'),
-            GeneralBlock("test04", False, False, True, Vector2(240, 330), 'pics/white_test.png'),
+            GeneralBlock("test04", False, False, True, Vector2(630, 210), 'pics/wall_4_1.png'),
+            GeneralBlock("test04", False, False, True, Vector2(240, 330), 'pics/wall_1_1.png'),
             GeneralBlock("test04", False, False, True, Vector2(270, 330), 'pics/white_test.png'),
             GeneralBlock("test04", False, False, True, Vector2(300, 330), 'pics/white_test.png'),
             GeneralBlock("test04", False, False, True, Vector2(330, 330), 'pics/white_test.png'),
@@ -39,12 +40,29 @@ class GameStateWorldOne():
             GeneralBlock("test04", False, False, True, Vector2(540, 330), 'pics/white_test.png'),
             GeneralBlock("test04", False, False, True, Vector2(570, 330), 'pics/white_test.png'),
             GeneralBlock("test04", False, False, True, Vector2(600, 330), 'pics/white_test.png'),
-            GeneralBlock("test04", False, False, True, Vector2(630, 330), 'pics/white_test.png'),
-            YouVerbBlock("test05", True, True, False, Vector2(330, 180), 'pics/text_you_0_1.png', 'you'),
-            #IsVerbBlock("test05", True, True, False, Vector2(330, 180), 'pics/text_you_0_1.png', 'you'),
-            PushVerbBlock("test06", True, True, False, Vector2(600, 180), 'pics/text_push_0_1.png', 'push'),
-            StopVerbBlock("test06", True, True, False, Vector2(330, 360), 'pics/text_stop_0_1.png', 'stop'),
-            WinVerbBlock("test06", True, True, False, Vector2(600, 360), 'pics/text_win_0_1.png', 'win'),
+            GeneralBlock("test04", False, False, True, Vector2(630, 330), 'pics/wall_4_1.png'),
+
+            GeneralBlock("test04", False, True, False, Vector2(510, 300), 'pics/rock_0_1.png'),
+            GeneralBlock("test04", False, True, False, Vector2(510, 270), 'pics/rock_0_1.png'),
+            GeneralBlock("test04", False, True, False, Vector2(510, 240), 'pics/rock_0_1.png'),
+
+            GeneralBlock("test04", False, True, False, Vector2(570, 270), 'pics/flag_0_1.png'),
+
+            BabaNounBlock("test03",True, True, False, Vector2(270, 150), 'pics/text_baba_0_1.png', 'baba'),
+            IsBlock("test05", True, True, False, Vector2(300, 150), 'pics/text_is_0_1.png', 'is'),
+            YouVerbBlock("test05", True, True, False, Vector2(330, 150), 'pics/text_you_0_1.png', 'you'),
+
+            StoneNounBlock("test03", True, True, False, Vector2(540, 150), 'pics/text_rock_0_1.png', 'stone'),
+            IsBlock("test05", True, True, False, Vector2(570, 150), 'pics/text_is_0_1.png', 'is'),
+            PushVerbBlock("test06", True, True, False, Vector2(600, 150), 'pics/text_push_0_1.png', 'push'),
+
+            WallNounBlock("test03", True, True, False, Vector2(270, 390), 'pics/text_wall_0_1.png', 'wall'),
+            IsBlock("test05", True, True, False, Vector2(300, 390), 'pics/text_is_0_1.png', 'is'),
+            StopVerbBlock("test06", True, True, False, Vector2(330, 390), 'pics/text_stop_0_1.png', 'stop'),
+
+            FlagNounBlock("test03", True, True, False, Vector2(540, 390), 'pics/text_flag_0_1.png', 'flag'),
+            IsBlock("test05", True, True, False, Vector2(570, 390), 'pics/text_is_0_1.png', 'is'),
+            WinVerbBlock("test06", True, True, False, Vector2(600, 390), 'pics/text_win_0_1.png', 'win'),
         ]
         self.collideCheckGroup = pygame.sprite.Group()
         for unit in self.units:
