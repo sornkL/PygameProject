@@ -136,3 +136,11 @@ class FlagNounBlock(BaseBlock):
         self.word = word
         self._controllable = False
         self.moveable = True
+
+class LavaNounBlock(BaseBlock):
+    def __init__(self, id: str,text: bool, moveable: bool, controllable: bool, location: Vector2, texture: str,
+                 word: str, *groups: AbstractGroup):
+        super().__init__(id, text, moveable, controllable, location, texture, *groups)
+        self.word = word
+        self._controllable = False
+        self.moveable = True
