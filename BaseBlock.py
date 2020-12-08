@@ -8,7 +8,7 @@ from pygame.sprite import AbstractGroup
 
 
 class BaseBlock(pygame.sprite.Sprite):
-    def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str, *groups: AbstractGroup,
+    def __init__(self, id: str,text: bool, moveable: bool, controllable: bool, location: Vector2, texture: str, *groups: AbstractGroup,
                  **kwargs):
         """
         :param id: 每个关卡方块的唯一编号
@@ -20,6 +20,7 @@ class BaseBlock(pygame.sprite.Sprite):
         """
 
         super().__init__(*groups)
+        self.text = text
         self._id = id
         self._moveable = moveable
         self._controllable = controllable
@@ -50,12 +51,13 @@ class BaseBlock(pygame.sprite.Sprite):
         :return: 返回当前控制的方块是否碰撞了不可移动的方块
         """
 
-        raise NotImplementedError
+        #raise NotImplementedError
+        pass
 
     def move(self, direction: Vector2, group):
         """
         :param direction: 方块移动方向，Vector(x, y)
         """
 
-        raise NotImplementedError
-
+        #raise NotImplementedError
+        pass

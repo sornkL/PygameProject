@@ -24,9 +24,9 @@ class GeneralBlock(BaseBlock):
 
 
 class YouVerbBlock(BaseBlock):
-    def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
+    def __init__(self, id: str,text: bool, moveable: bool, controllable: bool, location: Vector2, texture: str,
                  word: str, *groups: AbstractGroup):
-        super().__init__(id, moveable, controllable, location, texture, *groups)
+        super().__init__(id, text, moveable, controllable, location, texture, *groups)
         self.word = word
         self._controllable = False
         self.moveable = True
@@ -34,9 +34,9 @@ class YouVerbBlock(BaseBlock):
     '''baba.YouVerbBlock(...)'''
 
 class HotVerbBlock(BaseBlock):
-    def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
+    def __init__(self, id: str,text: bool, moveable: bool, controllable: bool, location: Vector2, texture: str,
                  word: str, *groups: AbstractGroup):
-        super().__init__(id, moveable, controllable, location, texture, *groups)
+        super().__init__(id, text, moveable, controllable, location, texture, *groups)
         self.word = word
         self._controllable = False
         self.moveable = True
@@ -45,9 +45,9 @@ class HotVerbBlock(BaseBlock):
 
 
 class StopVerbBlock(BaseBlock):
-    def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
+    def __init__(self, id: str,text: bool, moveable: bool, controllable: bool, location: Vector2, texture: str,
                  word: str, *groups: AbstractGroup):
-        super().__init__(id, moveable, controllable, location, texture, *groups)
+        super().__init__(id, text, moveable, controllable, location, texture, *groups)
         self.word = word
         self._controllable = False
         self.moveable = True
@@ -55,9 +55,9 @@ class StopVerbBlock(BaseBlock):
     '''Wall.StopVerbBlock(...)'''
 
 class PushVerbBlock(BaseBlock):
-    def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
+    def __init__(self, id: str,text: bool, moveable: bool, controllable: bool, location: Vector2, texture: str,
                  word: str, *groups: AbstractGroup):
-        super().__init__(id, moveable, controllable, location, texture, *groups)
+        super().__init__(id, text, moveable, controllable, location, texture, *groups)
         self.word = word
         self._controllable = False
         self.moveable = True
@@ -66,9 +66,9 @@ class PushVerbBlock(BaseBlock):
 
 
 class WinVerbBlock(BaseBlock):
-    def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
+    def __init__(self, id: str,text: bool, moveable: bool, controllable: bool, location: Vector2, texture: str,
                  word: str, *groups: AbstractGroup):
-        super().__init__(id, moveable, controllable, location, texture, *groups)
+        super().__init__(id, text, moveable, controllable, location, texture, *groups)
         self.word = word
         self._controllable = False
         self.moveable = True
@@ -77,9 +77,9 @@ class WinVerbBlock(BaseBlock):
 
 
 class DefeatVerbBlock(BaseBlock):
-    def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
+    def __init__(self, id: str,text: bool, moveable: bool, controllable: bool, location: Vector2, texture: str,
                  word: str, *groups: AbstractGroup):
-        super().__init__(id, moveable, controllable, location, texture, *groups)
+        super().__init__(id, text, moveable, controllable, location, texture, *groups)
         self.word = word
         self._controllable = False
         self.moveable = True
@@ -88,9 +88,9 @@ class DefeatVerbBlock(BaseBlock):
 
 
 class MeltVerbBlock(BaseBlock):
-    def __init__(self, id: str, moveable: bool, controllable: bool, location: Vector2, texture: str,
+    def __init__(self, id: str,text: bool, moveable: bool, controllable: bool, location: Vector2, texture: str,
                  word: str, *groups: AbstractGroup):
-        super().__init__(id, moveable, controllable, location, texture, *groups)
+        super().__init__(id, text, moveable, controllable, location, texture, *groups)
         self.word = word
         self._controllable = False
         self.moveable = True
