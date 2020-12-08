@@ -73,7 +73,7 @@ class WinVerbBlock(BaseBlock):
         self._controllable = False
         self.moveable = True
     '''if(touch) -> win'''
-    '''flag.WinVerbBlock(...)'''
+    '''Flag.WinVerbBlock(...)'''
 
 
 class DefeatVerbBlock(BaseBlock):
@@ -84,7 +84,7 @@ class DefeatVerbBlock(BaseBlock):
         self._controllable = False
         self.moveable = True
     '''if(touch) -> defeat'''
-    '''skull.DefeatVerbBlock(...)'''
+    '''Skull.DefeatVerbBlock(...)'''
 
 
 class MeltVerbBlock(BaseBlock):

@@ -52,13 +52,13 @@ class UserInterface():
                 if event.type == pygame.K_ESCAPE:
                     self._running = False
                     break
-                elif event.key == pygame.K_RIGHT:
+                elif event.key == pygame.K_RIGHT or pygame.K_d:
                     self._moveCommand.x = CELL_SIZE_X
-                elif event.key == pygame.K_LEFT:
+                elif event.key == pygame.K_LEFT or pygame.K_a:
                     self._moveCommand.x = -CELL_SIZE_X
-                elif event.key == pygame.K_DOWN:
+                elif event.key == pygame.K_DOWN or pygame.K_s:
                     self._moveCommand.y = CELL_SIZE_X
-                elif event.key == pygame.K_UP:
+                elif event.key == pygame.K_UP or pygame.K_w:
                     self._moveCommand.y = -CELL_SIZE_X
 
     def _render_unit(self, unit):
