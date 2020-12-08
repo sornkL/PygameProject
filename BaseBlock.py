@@ -8,8 +8,8 @@ from pygame.sprite import AbstractGroup
 from typing import Union
 
 
-class BaseBlock(pygame.sprite.Sprite):
-    def __init__(self, id: str, text: bool, moveable: bool, controllable: bool, location: Vector2, texture: str, *groups: AbstractGroup):
+class BaseBlock():
+    def __init__(self, id: str, text: bool, moveable: bool, controllable: bool, location: Vector2, texture: str):
         """
         :param id: 每个关卡方块的唯一编号
         :param text: 方块是否是语法方块
@@ -19,7 +19,6 @@ class BaseBlock(pygame.sprite.Sprite):
         :param texture: 方块的贴图
         """
 
-        super().__init__(*groups)
         self._id = id
         self._text = text
         self._moveable = moveable
@@ -45,13 +44,23 @@ class BaseBlock(pygame.sprite.Sprite):
 
         return self._controllable
 
+    '''
     def _is_collide(self, group: pygame.sprite.Group) -> bool:
         """
         :param group: 传入一个不可移动的Sprite Group用以碰撞检测
         :return: 返回当前控制的方块是否碰撞了不可移动的方块
         """
 
-        return pygame.sprite.spritecollide(self, group, False)
+        pushSign = False
+        sampleBlockList = group.sprites()
+        if len(sampleBlockList) > 0:
+            if sampleBlockList[0].is_move():
+                pushSign = True
+
+        if pygame.sprite.spritecollide(self, group, False) and pushSign:
+            return False
+        else:
+            return True
 
     def move(self, direction: Vector2, group):
         """
@@ -67,4 +76,4 @@ class BaseBlock(pygame.sprite.Sprite):
                     or self._is_collide(group):
                 self.location -= direction
                 self.rect = Rect(self.location.x, self.location.y, CELL_SIZE_X, CELL_SIZE_Y)
-
+    '''
