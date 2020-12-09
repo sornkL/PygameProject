@@ -10,3 +10,4 @@ Update logs:
 更新 Blocks类；
 更新 WorldMap地图；
 更新 GameRuleObserver()以部分实现词法分析与胜利条件判定
+5. 2020-12-09 新增 贴图测试集（pics_test/），所有贴图大小调整至30x30
