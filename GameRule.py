@@ -183,6 +183,8 @@ class GameRuleObserver():
         """
         更新当前所有语法方块的状态，Python dict的key值表示方块名字，value值（bool）表示当前方块是否有某个状态
         :param stateStream: 状态流（dict）
+        :param objectBlockList: 所有is方块构成的list
+        :param targetWord: 待检测的目标动词
         :return: 无返回值，直接更新state stream
         """
 
@@ -197,14 +199,15 @@ class GameRuleObserver():
                     allGrammarBlocksList.append(type(_isGrammarValid[i]).__name__)
                     allGrammarBlocksList.append(_isGrammarValid[i+1])
 
-        for i in range(0, len(allGrammarBlocksList), 2):
-            if allGrammarBlocksList[i+1].word == targetWord:
-                stateStream[allGrammarBlocksList[i]] = True
-            else:
-                stateStream[allGrammarBlocksList[i]] = False
+        for i in range(0, len(allGrammarBlocksList), 2):  # 为stateStream初始化，默认都是False状态
+            stateStream[allGrammarBlocksList[i]] = False
 
-        for blockNounName, state in stateStream.items():
-            if blockNounName not in allGrammarBlocksList:
+        for i in range(0, len(allGrammarBlocksList), 2):
+            if allGrammarBlocksList[i+1].word == targetWord:  # 当匹配到状态时，调整为True
+                stateStream[allGrammarBlocksList[i]] = True
+                break
+        for blockNounName in stateStream:
+            if blockNounName not in allGrammarBlocksList:  # 当状态流里的状态不存在时，调整为False
                 stateStream[blockNounName] = False
 
     def endow(self, objectBlockList: list) -> None:
@@ -221,7 +224,7 @@ class GameRuleObserver():
 
         for blockNounName in stopStateStream:
             targetBlockName = "".join(blockNounName.split('Noun'))
-            if youStateStream[blockNounName]:
+            if youStateStream[blockNounName]:  # 更新具有you状态的方块属性
                 for unit in self._gameState.units:
                     if type(unit).__name__ == targetBlockName:
                         unit._controllable = True
@@ -230,7 +233,8 @@ class GameRuleObserver():
                 for unit in self._gameState.units:
                     if type(unit).__name__ == targetBlockName:
                         unit._controllable = False
-            if not stopStateStream[blockNounName] and not pushStateStream[blockNounName]:
+
+            if not stopStateStream[blockNounName] and not pushStateStream[blockNounName]:  # 更新具有stop和push状态的方块属性
                 for unit in self._gameState.units:
                     if type(unit).__name__ == targetBlockName and not unit.is_control():
                         unit._passable = True
