@@ -25,12 +25,13 @@ class UserInterface():
     def _update(self):
         testObserver = GameRuleObserver(self._gameState)
         testObserver.endow(self._gameState.isBlockList)
+        if self._gameState.playerState:
+            self._running = False
+        if testObserver.is_directly_win(self._gameState.units):
+            self._gameState.playerState = True
         for unit in self._gameState.units:
             if unit.is_control():
                 testObserver._move(unit, self._moveCommand)
-            if testObserver._is_win(self._gameState.units):
-                print("Victory")
-
 
     def _process_input(self):
         self._moveCommand = Vector2(0, 0)

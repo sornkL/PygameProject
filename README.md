@@ -20,3 +20,4 @@ Update logs:
 新增 BaseBlock基类的passable属性，表示方块是否能被穿过; <br />
 重构 碰撞检测，以根据passable属性判断并实现方块的穿越; <br />
 更新 GameRuleObserver()以实现对特定语法方块(stop, push, you)的谓词分析(_is_grammar_valid())与属性赋予（endow()）<br />
+更新碰撞检测，更新 GameRuleObserver()以实现胜利条件的复杂判定 <br />
