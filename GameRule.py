@@ -1,15 +1,26 @@
 import pygame
 
+import Map1
+
 from typing import Union
 from pygame.math import Vector2
 
 from Blocks import *
+from GameState import *
+
+stopStateStream = {}
+pushStateStream = {}
+youStateStream = {}
 
 class GameRuleObserver():
     def __init__(self, gameState):
         self._gameState = gameState
 
-    def _is_inside_map(self, coordinate: Vector2):
+    def _is_inside_map(self, coordinate: Vector2) -> bool:
+        """
+        :param coordinate: 方块的坐标，Vector2类型
+        :return: 返回方块是否在地图的范围内
+        """
         if coordinate.x < 0 or coordinate.x >= WORLD_MAX_X*CELL_SIZE_X \
                 or coordinate.y < 0 or coordinate.y >= WORLD_MAX_Y*CELL_SIZE_Y:
             return False
@@ -27,7 +38,7 @@ class GameRuleObserver():
         if direction != Vector2(0, 0):
             _newLocation = objectBlock.location + direction
             for unit in self._gameState.units:
-                if unit.location == _newLocation:
+                if unit.location == _newLocation and not unit.is_pass():
                     return unit
                 else:
                     continue
@@ -41,7 +52,7 @@ class GameRuleObserver():
 
         nextBlock = self._is_exist(objectBlock, direction)
         lineBlockList = []
-        while nextBlock is not None:
+        while nextBlock is not None and not nextBlock.is_pass():
             lineBlockList.append(nextBlock)
             nextBlock = self._is_exist(nextBlock, direction)
 
@@ -103,7 +114,8 @@ class GameRuleObserver():
             _newLocation = objectBlock.location + direction
 
             if self._is_inside_map(_newLocation):
-                if self._is_exist(objectBlock, direction) is None:
+                nextBlock = self._is_exist(objectBlock, direction)
+                if nextBlock is None or nextBlock.is_pass():
                     objectBlock.location = _newLocation
                 else:
                     if not self._is_collide(objectBlock, direction):
@@ -111,6 +123,7 @@ class GameRuleObserver():
 
     def _is_grammar_valid(self, objectBlock: Union[GeneralBlock]) -> list:
         """
+        :param objectBlock: is方块（IsBlock）
         :return: 如果谓词分析后，上-is-下（或左-is-右）合法（Noun. + is + Verb.），则返回前后方块的信息，否则返回None
         """
 
@@ -159,4 +172,94 @@ class GameRuleObserver():
             return _compareList[0].word == _compareList[1].word
         else:
             return False
+
+    def _update_state(self, stateStream: dict, objectBlockList: list, targetWord: str) -> None:
+        """
+        更新当前所有语法方块的状态，Python dict的key值表示方块名字，value值（bool）表示当前方块是否有某个状态
+        :param stateStream: 状态流（dict）
+        :return: 无返回值，直接更新state stream
+        """
+
+        allGrammarBlocksList = []
+
+        for isBlock in objectBlockList:
+            _isGrammarValid = self._is_grammar_valid(isBlock)
+            for i in range(0, len(_isGrammarValid), 2):
+                if _isGrammarValid[i] is None:
+                    continue
+                else:
+                    allGrammarBlocksList.append(type(_isGrammarValid[i]).__name__)
+                    allGrammarBlocksList.append(_isGrammarValid[i+1])
+
+        for i in range(0, len(allGrammarBlocksList), 2):
+            if allGrammarBlocksList[i+1].word == targetWord:
+                stateStream[allGrammarBlocksList[i]] = True
+            else:
+                stateStream[allGrammarBlocksList[i]] = False
+
+        for blockNounName, state in stateStream.items():
+            if blockNounName not in allGrammarBlocksList:
+                stateStream[blockNounName] = False
+
+    def endow(self, objectBlockList: list) -> None:
+        """
+        根据语法规则判断是否需要赋予（修改）方块某些属性，若符合语法规则，则直接赋予属性
+        :param objectBlockList: 所有is方块构成的list
+        :return: 无返回值，直接在gameState中修改方块的状态
+        """
+
+        self._update_state(stopStateStream, objectBlockList, 'stop')
+        self._update_state(pushStateStream, objectBlockList, 'push')
+        self._update_state(youStateStream, objectBlockList, 'you')
+
+        for blockNounName in stopStateStream:
+            targetBlockName = "".join(blockNounName.split('Noun'))
+            if youStateStream[blockNounName]:
+                for unit in self._gameState.units:
+                    if type(unit).__name__ == targetBlockName:
+                        unit._controllable = True
+                        unit._moveable = True
+            else:
+                for unit in self._gameState.units:
+                    if type(unit).__name__ == targetBlockName:
+                        unit._controllable = False
+            if not stopStateStream[blockNounName] and not pushStateStream[blockNounName]:
+                for unit in self._gameState.units:
+                    if type(unit).__name__ == targetBlockName and not unit.is_control():
+                        unit._passable = True
+                        unit._moveable = False
+            elif stopStateStream[blockNounName] and not pushStateStream[blockNounName]:
+                for unit in self._gameState.units:
+                    if type(unit).__name__ == targetBlockName and not unit.is_control():
+                        unit._passable = False
+                        unit._moveable = False
+            elif not stopStateStream[blockNounName] and pushStateStream[blockNounName]:
+                for unit in self._gameState.units:
+                    if type(unit).__name__ == targetBlockName and not unit.is_control():
+                        unit._passable = False
+                        unit._moveable = True
+            else:
+                for unit in self._gameState.units:
+                    if type(unit).__name__ == targetBlockName and not unit.is_control():
+                        unit._passable = False
+                        unit._moveable = False
+
+    '''
+    Todo: transform function
+    def transform(self, objectBlock: Union[GeneralBlock]):
+        #x and y are similar to them above
+        blockaround = self._is_grammar_valid(objectBlock)
+        for i in range(0, len(blockaround), 2):
+            if blockaround[i] is None:
+                continue
+            else:
+                for unity in self._gameState.units:
+                    unity._controllable = False
+                if(blockaround[i+1]== 'you'):
+                    self._crontrollable = True
+                else:
+                    for unity in self._gameState.units:
+                        if unity == self:
+                            unity = blockaround[i+1]
+    '''
 
