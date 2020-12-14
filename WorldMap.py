@@ -1,35 +1,20 @@
 import pygame
 
+import Map1
+
 from pygame.math import Vector2
 from pygame.rect import Rect
 
 from Blocks import *
+from GameRule import GameRuleObserver
+from GameState import *
 from Settings import *
 
-
-class GameState():
-    def __init__(self):
-        self.worldSize = Vector2(WORLD_MAX_X, WORLD_MAX_Y)
-        self.units = [
-            GeneralBlock(True, True, Vector2(0, 0), 'pics/blue_test.png'),
-            GeneralBlock(True, True, Vector2(90, 0), 'pics/blue_test.png'),
-            GeneralBlock(False, True, Vector2(60, 0), 'pics/white_test.png'),
-            GeneralBlock(False, True, Vector2(60, 60), 'pics/white_test.png'),
-        ]
-        self.collideCheckGroup = pygame.sprite.Group()
-        for unit in self.units:
-            if not unit.is_move():
-                self.collideCheckGroup.add(unit)
-
-    def update_move(self, moveCommand, moveTarget):
-        for unit in self.units:
-            if unit == moveTarget:
-                unit.move(moveCommand, self.collideCheckGroup)
 
 class UserInterface():
     def __init__(self):
         pygame.init()
-        self._gameState = GameState()
+        self._gameState = GameState(Map1.units)
         self._cellSize = Vector2(CELL_SIZE_X, CELL_SIZE_Y)
         _windowSize = self._gameState.worldSize.elementwise() * self._cellSize
         self._window = pygame.display.set_mode((int(_windowSize.x), int(_windowSize.y)))
@@ -38,8 +23,14 @@ class UserInterface():
         self._moveCommand = Vector2(0, 0)
 
     def _update(self):
+        testObserver = GameRuleObserver(self._gameState)
+        testObserver.endow(self._gameState.isBlockList)
         for unit in self._gameState.units:
-            self._gameState.update_move(self._moveCommand, unit)
+            if unit.is_control():
+                testObserver._move(unit, self._moveCommand)
+            if testObserver._is_win(self._gameState.units):
+                print("Victory")
+
 
     def _process_input(self):
         self._moveCommand = Vector2(0, 0)
@@ -52,13 +43,13 @@ class UserInterface():
                     self._running = False
                     break
                 elif event.key == pygame.K_RIGHT:
-                    self._moveCommand.x = CELL_SIZE_X
+                    self._moveCommand = RIGHT_DIRECTION
                 elif event.key == pygame.K_LEFT:
-                    self._moveCommand.x = -CELL_SIZE_X
+                    self._moveCommand = LEFT_DIRECTION
                 elif event.key == pygame.K_DOWN:
-                    self._moveCommand.y = CELL_SIZE_X
+                    self._moveCommand = BOTTOM_DIRECTION
                 elif event.key == pygame.K_UP:
-                    self._moveCommand.y = -CELL_SIZE_X
+                    self._moveCommand = TOP_DIRECTION
 
     def _render_unit(self, unit):
         self._window.blit(unit.texture, unit.location)
@@ -78,7 +69,9 @@ class UserInterface():
             self._render()
             self._clock.tick(60)
 
-ui = UserInterface()
-ui.run()
 
-pygame.quit()
+if __name__ == '__main__':
+    ui = UserInterface()
+    ui.run()
+
+    pygame.quit()
