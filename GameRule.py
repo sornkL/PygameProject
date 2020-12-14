@@ -11,6 +11,7 @@ from GameState import *
 stopStateStream = {}
 pushStateStream = {}
 youStateStream = {}
+winStateStream = {}
 
 class GameRuleObserver():
     def __init__(self, gameState):
@@ -38,7 +39,7 @@ class GameRuleObserver():
         if direction != Vector2(0, 0):
             _newLocation = objectBlock.location + direction
             for unit in self._gameState.units:
-                if unit.location == _newLocation and not unit.is_pass():
+                if unit.location == _newLocation:
                     return unit
                 else:
                     continue
@@ -78,8 +79,7 @@ class GameRuleObserver():
         """
 
         blockDirection = self._is_exist(objectBlock, direction)
-
-        if blockDirection is not None and not blockDirection.is_move():
+        if blockDirection is not None and not blockDirection.is_move() and not blockDirection.is_pass():
             return True
         else:
             return False
@@ -117,6 +117,11 @@ class GameRuleObserver():
                 nextBlock = self._is_exist(objectBlock, direction)
                 if nextBlock is None or nextBlock.is_pass():
                     objectBlock.location = _newLocation
+                    for blockNounName in winStateStream:  # 判断胜利条件
+                        targetBlockName = "".join(blockNounName.split('Noun'))
+                        if winStateStream[blockNounName]:
+                            if type(nextBlock).__name__ == targetBlockName:
+                                self._gameState.playerState = True
                 else:
                     if not self._is_collide(objectBlock, direction):
                         self._push(objectBlock, direction)
@@ -148,9 +153,10 @@ class GameRuleObserver():
 
         pass
 
-    def _is_win(self, objectBlockList: list) -> bool:
+    def is_directly_win(self, objectBlockList: list) -> bool:
         """
-        暂时只写了一种胜利判定方式，即"xx is win", "xx is you"时xx的方块类型一致
+        仅一种胜利判定方式，即"xx is win", "xx is you"时xx的方块类型一致；
+        另一种胜利判定方法，内置于move()函数中，接触时即做判定
         :param objectBlockList: 所有待判断的方块，一般是GameState().units
         :return: True表示获得胜利，游戏状态playerState变为False
         """
@@ -211,6 +217,7 @@ class GameRuleObserver():
         self._update_state(stopStateStream, objectBlockList, 'stop')
         self._update_state(pushStateStream, objectBlockList, 'push')
         self._update_state(youStateStream, objectBlockList, 'you')
+        self._update_state(winStateStream, objectBlockList, 'win')
 
         for blockNounName in stopStateStream:
             targetBlockName = "".join(blockNounName.split('Noun'))
