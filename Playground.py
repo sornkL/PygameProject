@@ -12,7 +12,7 @@ if __name__ == '__main__':
     '''
     修改所有贴图至30x30大小
     '''
-
+    '''
     for file in os.listdir('Sprites'):
         fileIn = "Sprites/" + file
         fileOut = "pics_test/" + file
@@ -20,3 +20,5 @@ if __name__ == '__main__':
         WIDTH = 30
         HEIGHT = 30
         ResizeImage(fileIn, fileOut, WIDTH, HEIGHT, fileType)
+    '''
+

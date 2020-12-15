@@ -1,24 +1,23 @@
 import pygame
 
-import Map1
-import Map2
-
 from pygame.math import Vector2
 from pygame.rect import Rect
 
 from Blocks import *
+from MapLoader import *
 from GameRule import GameRuleObserver
 from GameState import *
 from Settings import *
 
 
 class UserInterface():
-    def __init__(self, units):
+    def __init__(self, map):
         pygame.init()
-        self._gameState = GameState(units)
+        self.worldSize = Vector2(WORLD_MAX_X, WORLD_MAX_Y)
         self._cellSize = Vector2(CELL_SIZE_X, CELL_SIZE_Y)
-        _windowSize = self._gameState.worldSize.elementwise() * self._cellSize
+        _windowSize = self.worldSize.elementwise() * self._cellSize
         self._window = pygame.display.set_mode((int(_windowSize.x), int(_windowSize.y)))
+        self._gameState = GameState(map.load_map())
         self._clock = pygame.time.Clock()
         self._running = True
         self._moveCommand = Vector2(0, 0)
@@ -26,6 +25,8 @@ class UserInterface():
     def _update(self):
         testObserver = GameRuleObserver(self._gameState)
         testObserver.endow(self._gameState.isBlockList)
+        testObserver.transform(self._gameState.isBlockList)
+
         if self._gameState.playerState:
             self._running = False
         if testObserver.is_win(self._gameState.units):
@@ -54,6 +55,7 @@ class UserInterface():
                     self._moveCommand = TOP_DIRECTION
 
     def _render_unit(self, unit):
+        unit.cartoon()
         self._window.blit(unit.texture, unit.location)
 
     def _render(self):
@@ -73,7 +75,8 @@ class UserInterface():
 
 
 if __name__ == '__main__':
-    ui = UserInterface(Map2.units)  # 加载地图
+    map = Map1()
+    ui = UserInterface(map)  # 加载地图
     ui.run()
 
     pygame.quit()

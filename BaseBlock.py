@@ -9,7 +9,7 @@ from typing import Union
 
 
 class BaseBlock():
-    def __init__(self, id: str, text: bool, passable: bool, moveable: bool, controllable: bool, location: Vector2, texture: str):
+    def __init__(self, id: str, location: Vector2, text=False, moveable=False, controllable=False,passable=True):
         """
         :param id: 每个关卡方块的唯一编号
         :param text: 方块是否是语法方块
@@ -26,11 +26,17 @@ class BaseBlock():
         self._moveable = moveable
         self._controllable = controllable
         self.location = location
-        self.texture = pygame.image.load(texture)
-        # self.rect = self.texture.get_rect()
-        # self.rect.top, self.rect.bottom = self.location.x, self.location.y
-        # self.location = Vector2(int(self.rect.centerx), int(self.rect.centery))
         self.rect = Rect(self.location.x, self.location.y, CELL_SIZE_X, CELL_SIZE_Y)
+
+    def cartoon(self):
+        pass
+
+    def is_text(self) -> bool:
+        """
+        :return: 返回方块是否是语法方块
+        """
+
+        return self._text
 
     def is_pass(self) -> bool:
         """
