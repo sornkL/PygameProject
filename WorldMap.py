@@ -25,6 +25,10 @@ class UserInterface():
     def _update(self):
         testObserver = GameRuleObserver(self._gameState)
         testObserver.endow(self._gameState.isBlockList)
+
+        for isBlock in self._gameState.isBlockList:
+            testObserver.transform(isBlock)
+
         if self._gameState.playerState:
             self._running = False
         if testObserver.is_win(self._gameState.units):
@@ -73,7 +77,7 @@ class UserInterface():
 
 
 if __name__ == '__main__':
-    map = Map2()
+    map = Map1()
     ui = UserInterface(map)  # 加载地图
     ui.run()
 

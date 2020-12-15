@@ -33,5 +33,7 @@ Update logs: <br />
 重构 BaseBlock, Blocks以支持复杂的动画/贴图效果; <br />
 更新 is_win()函数用于胜利条件的检测，返回值将修改gameState中的playerState; <br />
 更新 WorldMap/UserInterface，构造UserInterface()时现在需要传入地图方块的参数用于地图的加载; <br />
+更新 GameRuleObserver()以实现名词方块的转换（transform()）; <br />
+更新 _is_noun_grammar_valid()以实现Noun-is-Noun的谓词分析，现在_is_grammar_valid()更名为_is_verb_grammar_valid()以实现Noun-is-Verb的谓词分析; <br />
 修复 碰撞检测时方块无法被推越passable=True的方块的bug <br />
 
