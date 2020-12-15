@@ -1,6 +1,6 @@
 import pygame
 
-import Map1
+import MapLoader
 
 from typing import Union
 from pygame.math import Vector2
@@ -112,6 +112,8 @@ class GameRuleObserver():
         """
         if objectBlock.is_move() and objectBlock.is_control():
             _newLocation = objectBlock.location + direction
+            if type(objectBlock) == BabaBlock:
+                objectBlock.change_direction(direction)
 
             if self._is_inside_map(_newLocation):
                 nextBlock = self._is_exist(objectBlock, direction)
