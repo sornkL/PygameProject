@@ -6,7 +6,7 @@ Todo lists:
 2. 其余动词(Settings.py中的VERB_WORD_BANK)的具体实现; <br />
 3. （实现中） 方块的动画效果，包括颜色、贴图转换等; <br />
 
-Update logs:
+Update logs: <br />
 **1. 2020-12-04** <br />
 更新 README.md<br />
 **2. 2020-12-06** <br />
