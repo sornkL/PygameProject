@@ -25,9 +25,7 @@ class UserInterface():
     def _update(self):
         testObserver = GameRuleObserver(self._gameState)
         testObserver.endow(self._gameState.isBlockList)
-
-        for isBlock in self._gameState.isBlockList:
-            testObserver.transform(isBlock)
+        testObserver.transform(self._gameState.isBlockList)
 
         if self._gameState.playerState:
             self._running = False

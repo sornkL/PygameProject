@@ -278,22 +278,23 @@ class GameRuleObserver():
                         unit._passable = False
                         unit._moveable = False
 
-    def transform(self, objectBlock: Union[GeneralBlock]):
-        blockAround = self._is_noun_grammar_valid(objectBlock)
-        for i in range(0, len(blockAround), 2):
-            if blockAround[i] is not None:
-                # 当语法成立且宾语不为you时，定为方块转换关系，分别得到主语宾语的类名，
-                subjectBlockTypeName = type(blockAround[i]).__name__
-                subjectTargetBlockTypeName = "".join(subjectBlockTypeName.split("Noun"))
-                objectBlockTypeName1 = type(blockAround[i + 1]).__name__
-                objectTargetBlockTypeName = "".join(objectBlockTypeName1.split("Noun"))
-                # 遍历所有与主语类名相同的方块，将主语类名变为宾语类名，主语属性变为宾语属性
-                for unit in self._gameState.units:
-                    if type(unit).__name__ == objectTargetBlockTypeName:
-                        objectTargetBlock = unit
-                        break
-                for j in range(len(self._gameState.units)):
-                    if type(self._gameState.units[j]).__name__ == subjectTargetBlockTypeName:
-                        templocation = self._gameState.units[j].location
-                        self._gameState.units[j] = copy.copy(objectTargetBlock)
-                        self._gameState.units[j].location = templocation
+    def transform(self, objectBlockList: list) -> None:
+        for isBlock in objectBlockList:
+            blockAround = self._is_noun_grammar_valid(isBlock)
+            for i in range(0, len(blockAround), 2):
+                if blockAround[i] is not None:
+                    # 当语法成立且宾语不为you时，定为方块转换关系，分别得到主语宾语的类名，
+                    subjectBlockTypeName = type(blockAround[i]).__name__
+                    subjectTargetBlockTypeName = "".join(subjectBlockTypeName.split("Noun"))
+                    objectBlockTypeName1 = type(blockAround[i + 1]).__name__
+                    objectTargetBlockTypeName = "".join(objectBlockTypeName1.split("Noun"))
+                    # 遍历所有与主语类名相同的方块，将主语类名变为宾语类名，主语属性变为宾语属性
+                    for unit in self._gameState.units:
+                        if type(unit).__name__ == objectTargetBlockTypeName:
+                            objectTargetBlock = unit
+                            break
+                    for j in range(len(self._gameState.units)):
+                        if type(self._gameState.units[j]).__name__ == subjectTargetBlockTypeName:
+                            tempLocation = self._gameState.units[j].location
+                            self._gameState.units[j] = copy.copy(objectTargetBlock)
+                            self._gameState.units[j].location = tempLocation
