@@ -39,7 +39,7 @@ class GameRuleObserver():
         if direction != Vector2(0, 0):
             _newLocation = objectBlock.location + direction
             for unit in self._gameState.units:
-                if unit.location == _newLocation:
+                if unit.location == _newLocation and not unit.is_pass():
                     return unit
                 else:
                     continue
@@ -104,7 +104,7 @@ class GameRuleObserver():
             for block in nextBlockLine:
                 block.location += direction
 
-    def _move(self, objectBlock: Union[GeneralBlock], direction: Vector2):
+    def move(self, objectBlock: Union[GeneralBlock], direction: Vector2):
         """
         :param objectBlock: 某个特定的方块
         :param direction: 移动的方向
@@ -117,11 +117,6 @@ class GameRuleObserver():
                 nextBlock = self._is_exist(objectBlock, direction)
                 if nextBlock is None or nextBlock.is_pass():
                     objectBlock.location = _newLocation
-                    for blockNounName in winStateStream:  # 判断胜利条件
-                        targetBlockName = "".join(blockNounName.split('Noun'))
-                        if winStateStream[blockNounName]:
-                            if type(nextBlock).__name__ == targetBlockName:
-                                self._gameState.playerState = True
                 else:
                     if not self._is_collide(objectBlock, direction):
                         self._push(objectBlock, direction)
@@ -153,10 +148,10 @@ class GameRuleObserver():
 
         pass
 
-    def is_directly_win(self, objectBlockList: list) -> bool:
+    def is_win(self, objectBlockList: list) -> bool:
         """
-        仅一种胜利判定方式，即"xx is win", "xx is you"时xx的方块类型一致；
-        另一种胜利判定方法，内置于move()函数中，接触时即做判定
+        其中一种胜利判定方式，即"xx is win", "xx is you"时xx的方块类型一致；
+        另一种胜利判定方法，接触时即做判定（2020-12-15Update，从move()中移除，改写至is_win()中）
         :param objectBlockList: 所有待判断的方块，一般是GameState().units
         :return: True表示获得胜利，游戏状态playerState变为False
         """
@@ -164,6 +159,8 @@ class GameRuleObserver():
         _winSign = "win"
         _youSign = "you"
         _compareList = []
+        _controllableBlockLocationList = []
+        _controllableBlockNameList = []
 
         for isBlock in objectBlockList:
             _isGrammarValid = self._is_grammar_valid(isBlock)
@@ -174,10 +171,23 @@ class GameRuleObserver():
                     if _winSign == _isGrammarValid[i+1].word or _youSign == _isGrammarValid[i+1].word:
                         _compareList.append(_isGrammarValid[i])
 
-        if len(_compareList) == 2:
-            return _compareList[0].word == _compareList[1].word
-        else:
-            return False
+        if len(_compareList):
+            if len(_compareList) == 2 and _compareList[0].word == _compareList[1].word:
+                return True
+            else:
+                for unit in self._gameState.units:
+                    if unit.is_control():
+                        _controllableBlockLocationList.append(unit.location)
+                        if type(unit).__name__ not in _controllableBlockNameList:
+                            _controllableBlockNameList.append(type(unit).__name__)
+
+                for unit in self._gameState.units:
+                    if unit.location in _controllableBlockLocationList and type(unit) not in _controllableBlockNameList:
+                        for blockNounName in winStateStream:
+                            if winStateStream[blockNounName]:
+                                targetBlockName = "".join(blockNounName.split('Noun'))
+                                if type(unit).__name__ == targetBlockName:
+                                    return True
 
     def _update_state(self, stateStream: dict, objectBlockList: list, targetWord: str) -> None:
         """

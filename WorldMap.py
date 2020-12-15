@@ -1,6 +1,7 @@
 import pygame
 
 import Map1
+import Map2
 
 from pygame.math import Vector2
 from pygame.rect import Rect
@@ -12,9 +13,9 @@ from Settings import *
 
 
 class UserInterface():
-    def __init__(self):
+    def __init__(self, units):
         pygame.init()
-        self._gameState = GameState(Map1.units)
+        self._gameState = GameState(units)
         self._cellSize = Vector2(CELL_SIZE_X, CELL_SIZE_Y)
         _windowSize = self._gameState.worldSize.elementwise() * self._cellSize
         self._window = pygame.display.set_mode((int(_windowSize.x), int(_windowSize.y)))
@@ -27,11 +28,11 @@ class UserInterface():
         testObserver.endow(self._gameState.isBlockList)
         if self._gameState.playerState:
             self._running = False
-        if testObserver.is_directly_win(self._gameState.units):
+        if testObserver.is_win(self._gameState.units):
             self._gameState.playerState = True
         for unit in self._gameState.units:
             if unit.is_control():
-                testObserver._move(unit, self._moveCommand)
+                testObserver.move(unit, self._moveCommand)
 
     def _process_input(self):
         self._moveCommand = Vector2(0, 0)
@@ -72,7 +73,7 @@ class UserInterface():
 
 
 if __name__ == '__main__':
-    ui = UserInterface()
+    ui = UserInterface(Map2.units)  # 加载地图
     ui.run()
 
     pygame.quit()
