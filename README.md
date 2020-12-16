@@ -1,10 +1,11 @@
 
 This is a repository for the final assignment of "Introduction to Computer Science".<br />
 
-Todo lists:
-1. （实现中） transform 的具体实现，以实现Noun-is-Noun的复杂谓词分析并转换方块的属性; <br />
-2. （实现中）其余动词(Settings.py中的VERB_WORD_BANK)的具体实现; <br />
+Todo lists: <br />
+1. （已实现） transform 的具体实现，以实现Noun-is-Noun的复杂谓词分析并转换方块的属性; <br />
+2. （已实现）其余动词(Settings.py中的VERB_WORD_BANK)的具体实现; <br />
 3. （实现中） 方块的动画效果，包括颜色、贴图转换等; <br />
+4. 游戏界面与关卡设计 <br />
 
 Update logs: <br />
 **1. 2020-12-04** <br />
@@ -41,4 +42,5 @@ Update logs: <br />
 更新 GameRuleObserver()以实现对特定语法方块(weak, defeat)的属性赋予(_endow_is_weak(), _endow_is_defeat(), endow())，现在weak方块可以使该方块在被碰触时消失，defeat方块可以使触碰者消失; <br />
 更新 weak属性(VERB_WORD_BANK中)与WeakVerbBlock(Blocks中)以支持weak的判定; <br />
 更新 defeat属性(VERB_WORD_BANK中)以支持defeat的判定; <br />
+更新 SkullBlock, WallBlock, 语法方块（暂不包含Weak和Defeat）动画/贴图效果; <br />
 修复 transform()无法变换不在场方块的错误;

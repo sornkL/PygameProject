@@ -9,6 +9,7 @@ CELL_SIZE_Y = 30  # 每个方块宽度
 BACKGROUND_COLOR = (0, 0, 0)  # 背景颜色，黑色
 ALPHA = 120  # 不透明度，越低越透明
 NOALPHA = 255  # 不透明时的ALPHA值
+WALL_COLOR = 'black'  # 墙的默认颜色
 
 LEFT_DIRECTION = Vector2(-CELL_SIZE_X, 0)  # 左侧
 TOP_DIRECTION = Vector2(0, -CELL_SIZE_Y)  # 上侧
