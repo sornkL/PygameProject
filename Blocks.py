@@ -242,6 +242,17 @@ class MeltVerbBlock(BaseBlock):
         self.texture = pygame.image.load('pics/text_melt_0_1.png')
 
 
+class WeakVerbBlock(BaseBlock):
+    def __init__(self, id: str, location: Vector2, moveable=True, controllable=False, passable=False):
+        super().__init__(id, location, passable, moveable, controllable)
+        self.word = 'weak'
+        self._passable = False
+        self._controllable = False
+        self._moveable = True
+        self._text = True
+        self.texture = pygame.image.load('pics/text_weak_0_1.png')
+
+
 class IsBlock(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=True, controllable=False,passable=False):
         super().__init__(id, location, passable, moveable, controllable)

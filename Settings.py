@@ -16,5 +16,5 @@ RIGHT_DIRECTION = Vector2(CELL_SIZE_X, 0)  # 右侧
 BOTTOM_DIRECTION = Vector2(0, CELL_SIZE_Y)  # 下侧
 DIRECTION = [TOP_DIRECTION, BOTTOM_DIRECTION, LEFT_DIRECTION, RIGHT_DIRECTION]  # 四个方向，按照"上下左右"的顺序存放
 
-VERB_WORD_BANK = ['defeat', 'hot', 'is', 'push', 'stop', 'win', 'you']  # 动词词库
+VERB_WORD_BANK = ['defeat', 'hot', 'is', 'push', 'stop', 'weak', 'win', 'you']  # 动词词库
 NOUN_WORD_BANK = ['baba', 'flag', 'lava', 'rock', 'skull', 'wall']  # 名词词库

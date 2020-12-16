@@ -13,6 +13,8 @@ stopStateStream = {}
 pushStateStream = {}
 youStateStream = {}
 winStateStream = {}
+weakStateStream = {}
+
 
 class GameRuleObserver():
     def __init__(self, gameState):
@@ -202,6 +204,52 @@ class GameRuleObserver():
                                 if type(unit).__name__ == targetBlockName:
                                     return True
 
+    def _is_weak(self, objectBlockList: list) -> Union[bool, tuple]:
+        """
+        :param objectBlockList: 所有待判断的方块，一般是GameState().units
+        :return: True表示方块weak，额外返回一个list表示待移除的方块列表
+        """
+
+        _defeatSign = "weak"
+        _youSign = "you"
+        _compareList = []
+        _controllableBlockLocationList = []
+        _controllableBlockNameList = []
+        _removeBlockList = []
+
+        for isBlock in objectBlockList:
+            _isGrammarValid = self._is_verb_grammar_valid(isBlock)
+            for i in range(0, len(_isGrammarValid), 2):
+                if _isGrammarValid[i] is None:
+                    continue
+                else:
+                    if _defeatSign == _isGrammarValid[i+1].word or _youSign == _isGrammarValid[i+1].word:
+                        _compareList.append(_isGrammarValid[i])
+
+        if len(_compareList):
+            if len(_compareList) == 2 and _compareList[0].word == _compareList[1].word:
+                removeBlockNounName = type(_compareList[0]).__name__
+                removeBlockName = "".join(removeBlockNounName.split('Noun'))
+                for unit in self._gameState.units:
+                    if type(unit).__name__ == removeBlockName:
+                        _removeBlockList.append(unit)
+                return True, _removeBlockList
+            else:
+                for unit in self._gameState.units:
+                    if unit.is_control():
+                        _controllableBlockLocationList.append(unit.location)
+                        if type(unit).__name__ not in _controllableBlockNameList:
+                            _controllableBlockNameList.append(type(unit).__name__)
+
+                for unit in self._gameState.units:
+                    if unit.location in _controllableBlockLocationList and type(unit) not in _controllableBlockNameList:
+                        for blockNounName in weakStateStream:
+                            if weakStateStream[blockNounName]:
+                                targetBlockName = "".join(blockNounName.split('Noun'))
+                                if type(unit).__name__ == targetBlockName:
+                                    _removeBlockList.append(unit)
+                return True, _removeBlockList
+
     def _update_state(self, stateStream: dict, objectBlockList: list, targetWord: str) -> None:
         """
         更新当前所有语法方块的状态，Python dict的key值表示方块名字，value值（bool）表示当前方块是否有某个状态
@@ -240,13 +288,20 @@ class GameRuleObserver():
         :return: 无返回值，直接在gameState中修改方块的状态
         """
 
+        isWeakSign = False
+        _removeWeakBlockList = []
+
         self._update_state(stopStateStream, objectBlockList, 'stop')
         self._update_state(pushStateStream, objectBlockList, 'push')
         self._update_state(youStateStream, objectBlockList, 'you')
         self._update_state(winStateStream, objectBlockList, 'win')
+        self._update_state(weakStateStream, objectBlockList, 'weak')
 
         for blockNounName in stopStateStream:
             targetBlockName = "".join(blockNounName.split('Noun'))
+            _removeWeakBlockList = self._is_weak(self._gameState.units)[1]
+            if len(_removeWeakBlockList):
+                isWeakSign = True
             if youStateStream[blockNounName]:  # 更新具有you状态的方块属性
                 for unit in self._gameState.units:
                     if type(unit).__name__ == targetBlockName:
@@ -277,6 +332,10 @@ class GameRuleObserver():
                     if type(unit).__name__ == targetBlockName and not unit.is_control():
                         unit._passable = False
                         unit._moveable = False
+
+        if isWeakSign:
+            for removeWeakBlock in _removeWeakBlockList:
+                self._gameState.units.remove(removeWeakBlock)
 
     def transform(self, objectBlockList: list) -> None:
         for isBlock in objectBlockList:
