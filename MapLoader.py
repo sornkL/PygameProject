@@ -58,7 +58,8 @@ class Map1():
             FlagNounBlock("testFlagNoun",  Vector2(540, 390)),
             IsBlock("testIs04",  Vector2(570, 390)),
             WinVerbBlock("testWinVerb",  Vector2(600, 390)),
-            WeakVerbBlock("testWeak", Vector2(600, 450))
+            WeakVerbBlock("testWeak", Vector2(600, 450)),
+            DefeatVerbBlock("testDefeat", Vector2(600, 510))
         ]
 
         return units

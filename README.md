@@ -37,5 +37,8 @@ Update logs: <br />
 更新 _is_noun_grammar_valid()以实现Noun-is-Noun的谓词分析，现在_is_grammar_valid()更名为_is_verb_grammar_valid()以实现Noun-is-Verb的谓词分析; <br />
 修复 碰撞检测时方块无法被推越passable=True的方块的bug <br />
 **8. 2020-12-16** <br />
-更新 GameRuleObserver()以实现对特定语法方块(weak)的属性赋予(_endow_is_defeat(), endow())，现在weak方块可以使该方块在被碰触时消失
-更新 weak属性(VERB_WORD_BANK中)与WeakVerbBlock(Blocks中)以支持weak的判定
+新增 is_lose()函数用于死亡条件的检测，返回值将修改gameState中的aliveState; <br />
+更新 GameRuleObserver()以实现对特定语法方块(weak, defeat)的属性赋予(_endow_is_weak(), _endow_is_defeat(), endow())，现在weak方块可以使该方块在被碰触时消失，defeat方块可以使触碰者消失; <br />
+更新 weak属性(VERB_WORD_BANK中)与WeakVerbBlock(Blocks中)以支持weak的判定; <br />
+更新 defeat属性(VERB_WORD_BANK中)以支持defeat的判定; <br />
+修复 transform()无法变换不在场方块的错误;

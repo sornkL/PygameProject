@@ -27,10 +27,12 @@ class UserInterface():
         testObserver.endow(self._gameState.isBlockList)
         testObserver.transform(self._gameState.isBlockList)
 
-        if self._gameState.playerState:
+        if self._gameState.playerState or not self._gameState.aliveState:
             self._running = False
         if testObserver.is_win(self._gameState.units):
             self._gameState.playerState = True
+        if testObserver.is_lose(self._gameState.units):
+            self._gameState.aliveState = False
         for unit in self._gameState.units:
             if unit.is_control():
                 testObserver.move(unit, self._moveCommand)
