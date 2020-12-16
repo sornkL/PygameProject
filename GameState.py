@@ -5,10 +5,12 @@ import MapLoader
 from Blocks import *
 from Settings import *
 
+
 class GameState():
     def __init__(self, units):
         self.worldSize = Vector2(WORLD_MAX_X, WORLD_MAX_Y)
         self.playerState = False  # 游戏状态，True表示获胜状态
+        self.aliveState = True  # 控制状态，True表示场上仍有方块可以被控制
         self.units = units
 
         self.isBlockList = []
@@ -16,3 +18,7 @@ class GameState():
             if unit.is_text() and unit.word == "is":
                 self.isBlockList.append(unit)
 
+        self.subjectBlockList = []
+        for subjectBlock in self.units:
+            if not subjectBlock.is_text():
+                self.subjectBlockList.append(subjectBlock)
