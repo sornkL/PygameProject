@@ -16,3 +16,7 @@ class GameState():
             if unit.is_text() and unit.word == "is":
                 self.isBlockList.append(unit)
 
+        self.subjectBlockList = []
+        for subjectBlock in self.units:
+            if not subjectBlock._text:
+                self.subjectBlockList.append(subjectBlock)
