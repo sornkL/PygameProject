@@ -338,6 +338,7 @@ class GameRuleObserver():
                 self._gameState.units.remove(removeWeakBlock)
 
     def transform(self, objectBlockList: list) -> None:
+        subjectBlockList = self._gameState.subjectBlockList
         for isBlock in objectBlockList:
             blockAround = self._is_noun_grammar_valid(isBlock)
             for i in range(0, len(blockAround), 2):
@@ -348,12 +349,12 @@ class GameRuleObserver():
                     objectBlockTypeName1 = type(blockAround[i + 1]).__name__
                     objectTargetBlockTypeName = "".join(objectBlockTypeName1.split("Noun"))
                     # 遍历所有与主语类名相同的方块，将主语类名变为宾语类名，主语属性变为宾语属性
-                    for unit in self._gameState.units:
+                    for unit in subjectBlockList:
                         if type(unit).__name__ == objectTargetBlockTypeName:
                             objectTargetBlock = unit
                             break
                     for j in range(len(self._gameState.units)):
                         if type(self._gameState.units[j]).__name__ == subjectTargetBlockTypeName:
-                            tempLocation = self._gameState.units[j].location
+                            templocation = self._gameState.units[j].location
                             self._gameState.units[j] = copy.copy(objectTargetBlock)
-                            self._gameState.units[j].location = tempLocation
+                            self._gameState.units[j].location = templocation
