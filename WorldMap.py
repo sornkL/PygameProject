@@ -77,7 +77,7 @@ class UserInterface():
 
 
 if __name__ == '__main__':
-    map = Map1()
+    map = Map3()
     ui = UserInterface(map)  # 加载地图
     ui.run()
 

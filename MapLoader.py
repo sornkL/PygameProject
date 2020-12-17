@@ -262,3 +262,80 @@ class MapHard():
         ]
 
         return units
+
+
+class Map3():
+    def load_map(self):
+        units = [
+
+            #临时墙
+            WallBlock("Null", Vector2(300, 150)),
+            WallBlock("Null", Vector2(330, 150)),
+            WallBlock("Null", Vector2(360, 150)),
+            WallBlock("Null", Vector2(390, 150)),
+            WallBlock("Null", Vector2(420, 150)),
+            WallBlock("Null", Vector2(450, 150)),
+            WallBlock("Null", Vector2(480, 150)),
+            WallBlock("Null", Vector2(510, 150)),
+            WallBlock("Null", Vector2(540, 150)),
+
+            WallBlock("Null", Vector2(300, 420)),
+            WallBlock("Null", Vector2(330, 420)),
+            WallBlock("Null", Vector2(360, 420)),
+            WallBlock("Null", Vector2(390, 420)),
+            WallBlock("Null", Vector2(420, 420)),
+            WallBlock("Null", Vector2(450, 420)),
+            WallBlock("Null", Vector2(480, 420)),
+            WallBlock("Null", Vector2(510, 420)),
+            WallBlock("Null", Vector2(540, 420)),
+
+            WallBlock("Null", Vector2(300, 180)),
+            WallBlock("Null", Vector2(300, 210)),
+            WallBlock("Null", Vector2(300, 240)),
+            WallBlock("Null", Vector2(300, 270)),
+            WallBlock("Null", Vector2(300, 300)),
+            WallBlock("Null", Vector2(300, 330)),
+            WallBlock("Null", Vector2(300, 360)),
+            WallBlock("Null", Vector2(300, 390)),
+
+            WallBlock("Null", Vector2(540, 180)),
+            WallBlock("Null", Vector2(540, 210)),
+            WallBlock("Null", Vector2(540, 240)),
+            WallBlock("Null", Vector2(540, 270)),
+            WallBlock("Null", Vector2(540, 300)),
+            WallBlock("Null", Vector2(540, 330)),
+            WallBlock("Null", Vector2(540, 360)),
+            WallBlock("Null", Vector2(540, 390)),
+            #结束墙
+
+            BabaBlock("Baba", Vector2(330, 180)),
+            RockBlock("01", Vector2(330, 240)),
+            RockBlock("01", Vector2(360, 240)),
+            RockBlock("01", Vector2(390, 240)),
+            RockBlock("01", Vector2(390, 210)),
+
+
+            BabaNounBlock("BabaNounBlock", Vector2(120, 300)),
+            IsBlock("Is00", Vector2(150, 300)),
+            YouVerbBlock("YouVerbBlock", Vector2(180, 300)),
+
+            FlagNounBlock("FlagNounBlock", Vector2(120, 240)),
+            IsBlock("Is01", Vector2(150, 240)),
+            WinVerbBlock("WinVerbBlock", Vector2(180, 240)),
+
+            RockNounBlock("RockNounBlock", Vector2(360, 330)),
+            IsBlock("Is02", Vector2(390, 330)),
+            StopVerbBlock("StopVerbBlock", Vector2(420, 330)),
+
+            StopVerbBlock("StopVerbBlock", Vector2(480, 270)),
+            IsBlock("Is03", Vector2(480, 240)),
+            WallNounBlock("WallNounBlock", Vector2(480, 210)),
+
+
+            WallNounBlock("WallNounBlock", Vector2(0, 0)),
+            IsBlock("Is03", Vector2(30, 0)),
+            DefeatVerbBlock("DefeatVerbBlock", Vector2(60, 0)),
+
+        ]
+
+        return units
