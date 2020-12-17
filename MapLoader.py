@@ -59,10 +59,12 @@ class Map1():
             IsBlock("testIs04",  Vector2(570, 390)),
             WinVerbBlock("testWinVerb",  Vector2(600, 390)),
             # WeakVerbBlock("testWeak", Vector2(600, 450)),
-            DefeatVerbBlock("testDefeat", Vector2(600, 510))
+            DefeatVerbBlock("testDefeat", Vector2(600, 510)),
+            WeakVerbBlock("test", Vector2(660, 510))
         ]
 
         return units
+
 
 class Map2:
     def load_map(self):
