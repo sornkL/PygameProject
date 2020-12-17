@@ -230,6 +230,43 @@ class WallBlock(BaseBlock):
             self.frame = 0
 
 
+class JellyBlock(BaseBlock):
+    def __init__(self, id: str, location: Vector2, moveable=False, controllable=False, passable=True):
+        super().__init__(id, location, passable, moveable, controllable)
+        self._passable = True
+        self._controllable = False
+        self._moveable = True
+        self._text = False
+        self.textureList = [pygame.image.load('pics/jelly_0_1.png'), pygame.image.load('pics/jelly_0_2.png'),
+                            pygame.image.load('pics/jelly_0_3.png')]
+        pic1 = pygame.image.load('pics/jelly_0_1.png').convert_alpha()
+        pic2 = pygame.image.load('pics/jelly_0_2.png').convert_alpha()
+        pic3 = pygame.image.load('pics/jelly_0_3.png').convert_alpha()
+        pic1.set_alpha(ALPHA)
+        pic2.set_alpha(ALPHA)
+        pic3.set_alpha(ALPHA)
+        self.transparentTextureList = [pic1, pic2, pic3]
+        self.frame = 0
+        self.list = self.textureList
+
+    def cartoon(self):
+        """
+        对于有动画效果的方块，当其可以通过时，将不透明度调低
+        :return:
+        """
+        frame = 60
+        if not self.is_pass() or self.is_control():
+            self.list = self.textureList
+        else:
+            self.list = self.transparentTextureList
+
+        if self.frame < frame:
+            self.texture = self.list[self.frame // 20]
+            self.frame += 1
+        else:
+            self.frame = 0
+
+
 class YouVerbBlock(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=True, controllable=False, passable=False):
         super().__init__(id, location, passable, moveable, controllable)
@@ -398,3 +435,15 @@ class FlagNounBlock(BaseBlock):
         self._moveable = True
         self._text = True
         self.texture = pygame.image.load('pics/text_flag_0_1.png')
+
+
+class JellyNounBlock(BaseBlock):
+    def __init__(self, id: str, location: Vector2, moveable=True, controllable=False,passable=False):
+        super().__init__(id,location,passable, moveable, controllable)
+        self.word = 'jelly'
+        self._passable = False
+        self._controllable = False
+        self._moveable = True
+        self._text = True
+        self.transparent = False
+        self.texture = pygame.image.load('pics/text_jelly_0_1.png')

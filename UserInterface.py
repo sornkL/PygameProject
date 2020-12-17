@@ -12,7 +12,7 @@ from Settings import *
 
 class UserInterface():
     def __init__(self, map):
-        pygame.init()
+        # pygame.init()
         self.worldSize = Vector2(WORLD_MAX_X, WORLD_MAX_Y)
         self._cellSize = Vector2(CELL_SIZE_X, CELL_SIZE_Y)
         _windowSize = self.worldSize.elementwise() * self._cellSize

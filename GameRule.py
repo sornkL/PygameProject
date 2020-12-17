@@ -406,7 +406,8 @@ class GameRuleObserver():
                 self._gameState.units.remove(removeWeakBlock)
         if isDefeatSign:
             for removeDefeatBlock in _removeDefeatBlockList:
-                self._gameState.units.remove(removeDefeatBlock)
+                if removeDefeatBlock.is_control():
+                    self._gameState.units.remove(removeDefeatBlock)
 
     def transform(self, objectBlockList: list) -> None:
         """
