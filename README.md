@@ -43,4 +43,8 @@ Update logs: <br />
 更新 weak属性(VERB_WORD_BANK中)与WeakVerbBlock(Blocks中)以支持weak的判定; <br />
 更新 defeat属性(VERB_WORD_BANK中)以支持defeat的判定; <br />
 更新 SkullBlock, WallBlock, 语法方块（暂不包含Weak和Defeat）动画/贴图效果; <br />
-修复 transform()无法变换不在场方块的错误;
+修复 transform()无法变换不在场方块的错误; <br />
+**9. 2020-12-17**
+新增 MapHard地图; <br />
+修复 RockBlock, SkullBlock的passable初始属性，现在都为True; <br />
+修复 多个方块具有同样属性时可能导致赋予部分方块属性时失效的错误; <br />

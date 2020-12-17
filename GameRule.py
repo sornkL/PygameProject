@@ -338,8 +338,7 @@ class GameRuleObserver():
 
         for i in range(0, len(allGrammarBlocksList), 2):
             if allGrammarBlocksList[i+1].word == targetWord:  # 当匹配到状态时，调整为True
-                stateStream[allGrammarBlocksList[i]] = True
-                break
+                stateStream[allGrammarBlocksList[i]] = True  #! Possible Bug: 下一行可能需要一个break语句
         for blockNounName in stateStream:
             if blockNounName not in allGrammarBlocksList:  # 当状态流里的状态不存在时，调整为False
                 stateStream[blockNounName] = False

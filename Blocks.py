@@ -98,7 +98,7 @@ class FlagBlock(BaseBlock):
 class SkullBlock(BaseBlock):
     def __init__(self, id: str, location: Vector2, text=False, moveable=False, controllable=False, passable=True):
         super().__init__(id,location,passable, moveable, controllable)
-        self._passable = False
+        self._passable = True
         self._controllable = False
         self._moveable = True
         self._text = False
@@ -135,7 +135,7 @@ class SkullBlock(BaseBlock):
 class RockBlock(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=False, controllable=False, passable=True):
         super().__init__(id, location, passable, moveable, controllable)
-        self._passable = False
+        self._passable = True
         self._controllable = False
         self._moveable = True
         self._text = False
