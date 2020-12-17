@@ -46,6 +46,7 @@ Update logs: <br />
 修复 transform()无法变换不在场方块的错误; <br />
 **9. 2020-12-17** <br />
 新增 MapHard地图; <br />
+新增 Map3地图; <br />
 修复 RockBlock, SkullBlock的passable初始属性，现在都为True; <br />
 修复 多个方块具有同样属性时可能导致赋予部分方块属性时失效的错误; <br />
 修复 transform()无法变换从未出现过的方块时会产生的错误; <br />
