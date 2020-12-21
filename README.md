@@ -4,8 +4,8 @@ This is a repository for the final assignment of "Introduction to Computer Scien
 Todo lists: <br />
 1. （已实现） transform 的具体实现，以实现Noun-is-Noun的复杂谓词分析并转换方块的属性; <br />
 2. （已实现）其余动词(Settings.py中的VERB_WORD_BANK)的具体实现; <br />
-3. （实现中） 方块的动画效果，包括颜色、贴图转换等; <br />
-4. 游戏界面与关卡设计 <br />
+3. （已实现） 方块的动画效果，包括颜色、贴图转换等; <br />
+4. （实现中）游戏界面与关卡设计 <br />
 
 Update logs: <br />
 **1. 2020-12-04** <br />
@@ -53,5 +53,5 @@ Update logs: <br />
 修复 transform()无法变换从未出现过的方块时会产生的错误; <br />
 **10. 2020-12-21** <br />
 重构 main.py，现在支持简单的选关操作和游戏退出操作; <br />
-更新 GameRuleObserver()的_is_verb_grammar_valid()与_is_noun_grammar_valid()函数，现在支持当语法方块满足词法分析后会变成高亮显示，反之则添加透明度表示词法不成立; <br />
+更新 GameRuleObserver()的_is_verb_grammar_valid()与_is_noun_grammar_valid()函数，现在支持当语法方块满足词法后会变成高亮显示，反之则添加透明度表示词法不成立; <br />
 修复 多个函数（is_win(), _is_defeat(), _is_weak()等）参数接口调用错误可能导致语法方块高亮失效的错误; <br />
