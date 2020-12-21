@@ -22,14 +22,23 @@ class UserInterface():
         self._running = True
         self._moveCommand = Vector2(0, 0)
 
+    def check_win_state(self):
+        return self._gameState.playerState
+
+    def check_lose_state(self):
+        return not self._gameState.aliveState
+
     def _update(self):
         testObserver = GameRuleObserver(self._gameState)
+        for i in range(len(self._gameState.units)):
+            if self._gameState.units[i].is_text():
+                self._gameState.units[i].texture.set_alpha(ALPHA)
         testObserver.endow(self._gameState.isBlockList)
         testObserver.transform(self._gameState.isBlockList)
 
         if self._gameState.playerState or not self._gameState.aliveState:
             self._running = False
-        if testObserver.is_win(self._gameState.units):
+        if testObserver.is_win(self._gameState.isBlockList):
             self._gameState.playerState = True
         if testObserver.is_lose(self._gameState.units):
             self._gameState.aliveState = False
@@ -77,7 +86,8 @@ class UserInterface():
 
 
 if __name__ == '__main__':
-    map = Map3()
+    pygame.init()
+    map = MapHell()
     ui = UserInterface(map)  # 加载地图
     ui.run()
 

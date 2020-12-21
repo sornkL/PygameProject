@@ -3,6 +3,75 @@ import pygame
 from Blocks import *
 
 
+class MapMainMenu():
+    def load_map(self):
+        units = [
+            FlagBlock("Normal", Vector2(330, 30)),
+            FlagBlock("Hard", Vector2(420, 30)),
+            FlagBlock("Hell", Vector2(510, 30)),
+            FlagBlock("quit", Vector2(600, 90)),
+            BabaBlock("controlCursor", Vector2(420, 150)),
+
+            BabaNounBlock("testBabaNoun",  Vector2(540, 360)),
+            IsBlock("testIs01",  Vector2(570, 360)),
+            YouVerbBlock("testYouVerb",  Vector2(600, 360)),
+
+            FlagNounBlock("testFlagNoun",  Vector2(540, 390)),
+            IsBlock("testIs04",  Vector2(570, 390)),
+            WinVerbBlock("testWinVerb",  Vector2(600, 390)),
+
+        ]
+
+        return units
+
+
+class MapStart():
+    def load_map(self):
+        units = [
+            #临时墙
+            WallBlock("Null", Vector2(300, 150)),
+            WallBlock("Null", Vector2(330, 150)),
+            WallBlock("Null", Vector2(360, 150)),
+            WallBlock("Null", Vector2(390, 150)),
+            WallBlock("Null", Vector2(420, 150)),
+            WallBlock("Null", Vector2(450, 150)),
+            WallBlock("Null", Vector2(480, 150)),
+            WallBlock("Null", Vector2(510, 150)),
+            WallBlock("Null", Vector2(540, 150)),
+
+            WallBlock("Null", Vector2(300, 420)),
+            WallBlock("Null", Vector2(330, 420)),
+            WallBlock("Null", Vector2(360, 420)),
+            WallBlock("Null", Vector2(390, 420)),
+            WallBlock("Null", Vector2(420, 420)),
+            WallBlock("Null", Vector2(450, 420)),
+            WallBlock("Null", Vector2(480, 420)),
+            WallBlock("Null", Vector2(510, 420)),
+            WallBlock("Null", Vector2(540, 420)),
+
+            WallBlock("Null", Vector2(300, 180)),
+            WallBlock("Null", Vector2(300, 210)),
+            WallBlock("Null", Vector2(300, 240)),
+            WallBlock("Null", Vector2(300, 270)),
+            WallBlock("Null", Vector2(300, 300)),
+            WallBlock("Null", Vector2(300, 330)),
+            WallBlock("Null", Vector2(300, 360)),
+            WallBlock("Null", Vector2(300, 390)),
+
+            WallBlock("Null", Vector2(540, 180)),
+            WallBlock("Null", Vector2(540, 210)),
+            WallBlock("Null", Vector2(540, 240)),
+            WallBlock("Null", Vector2(540, 270)),
+            WallBlock("Null", Vector2(540, 300)),
+            WallBlock("Null", Vector2(540, 330)),
+            WallBlock("Null", Vector2(540, 360)),
+            WallBlock("Null", Vector2(540, 390)),
+            BabaBlock("target", Vector2(400, 400)),
+        ]
+
+        return units
+
+
 class Map1():
     def load_map(self):
         units = [

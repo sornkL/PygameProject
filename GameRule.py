@@ -139,8 +139,11 @@ class GameRuleObserver():
             _firstBlock = _blocksAroundList[i]
             _secondBlock = _blocksAroundList[i+1]
             if _firstBlock is not None and _secondBlock is not None:
-                if _firstBlock._text and _secondBlock._text:
+                if _firstBlock.is_text() and _secondBlock.is_text():
                     if _firstBlock.word in NOUN_WORD_BANK and _secondBlock.word in VERB_WORD_BANK:
+                        for unit in self._gameState.units:
+                            if unit == _firstBlock or unit == _secondBlock:
+                                unit.texture.set_alpha(NOALPHA)
                         _isGrammarValid[i] = _firstBlock
                         _isGrammarValid[i+1] = _secondBlock
 
@@ -157,8 +160,12 @@ class GameRuleObserver():
             _firstBlock = _blocksAroundList[i]
             _secondBlock = _blocksAroundList[i + 1]
             if _firstBlock is not None and _secondBlock is not None:
-                if _firstBlock._text and _secondBlock._text:
+                if _firstBlock.is_text() and _secondBlock.is_text():
                     if _firstBlock.word in NOUN_WORD_BANK and _secondBlock.word in NOUN_WORD_BANK:
+                        # 符合语法规则变方块颜色
+                        for unit in self._gameState.units:
+                            if unit == _firstBlock or unit == _secondBlock:
+                                unit.texture.set_alpha(NOALPHA)
                         _isGrammarValid[i] = _firstBlock
                         _isGrammarValid[i + 1] = _secondBlock
 
@@ -168,7 +175,7 @@ class GameRuleObserver():
         """
         其中一种胜利判定方式，即"xx is win", "xx is you"时xx的方块类型一致；
         另一种胜利判定方法，接触时即做判定（2020-12-15Update，从move()中移除，改写至is_win()中）
-        :param objectBlockList: 所有待判断的方块，一般是GameState().units
+        :param objectBlockList: 所有is方块构成的list
         :return: True表示获得胜利，游戏状态playerState变为False
         """
 
@@ -222,7 +229,7 @@ class GameRuleObserver():
 
     def _is_weak(self, objectBlockList: list) -> Union[bool, tuple]:
         """
-        :param objectBlockList: 所有待判断的方块，一般是GameState().units
+        :param objectBlockList: 所有is方块构成的list
         :return: True表示方块weak，额外返回一个list表示待移除的方块列表
         """
 
@@ -270,7 +277,7 @@ class GameRuleObserver():
 
     def _is_defeat(self, objectBlockList: list) -> Union[bool, tuple]:
         """
-        :param objectBlockList: 所有待判断的方块，一般是GameState().units
+        :param objectBlockList: 所有is方块构成的list
         :return: True表示方块weak，额外返回一个list表示待移除的方块列表
         """
 
@@ -364,8 +371,8 @@ class GameRuleObserver():
 
         for blockNounName in stopStateStream:
             targetBlockName = "".join(blockNounName.split('Noun'))
-            _removeWeakBlockList = self._is_weak(self._gameState.units)[1]
-            _removeDefeatBlockList = self._is_defeat(self._gameState.units)[1]
+            _removeWeakBlockList = self._is_weak(self._gameState.isBlockList)[1]
+            _removeDefeatBlockList = self._is_defeat(self._gameState.isBlockList)[1]
             if len(_removeWeakBlockList):
                 isWeakSign = True
             if len(_removeDefeatBlockList):
@@ -421,7 +428,7 @@ class GameRuleObserver():
             blockAround = self._is_noun_grammar_valid(isBlock)
             for i in range(0, len(blockAround), 2):
                 if blockAround[i] is not None:
-                    # 当语法成立且宾语不为you时，定为方块转换关系，分别得到主语宾语的类名，
+                    # 当语法成立且宾语不为you时，定为方块转换关系，分别得到主语宾语的类名
                     subjectBlockTypeName = type(blockAround[i]).__name__
                     subjectTargetBlockTypeName = "".join(subjectBlockTypeName.split("Noun"))
                     objectBlockTypeName1 = type(blockAround[i + 1]).__name__
@@ -433,6 +440,6 @@ class GameRuleObserver():
                             break
                     for j in range(len(self._gameState.units)):
                         if type(self._gameState.units[j]).__name__ == subjectTargetBlockTypeName:
-                            templocation = self._gameState.units[j].location
+                            tempLocation = self._gameState.units[j].location
                             self._gameState.units[j] = copy.copy(objectTargetBlock)
-                            self._gameState.units[j].location = templocation
+                            self._gameState.units[j].location = tempLocation
