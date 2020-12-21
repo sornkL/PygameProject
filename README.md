@@ -53,5 +53,6 @@ Update logs: <br />
 修复 transform()无法变换从未出现过的方块时会产生的错误; <br />
 **10. 2020-12-21** <br />
 重构 main.py，现在支持简单的选关操作和游戏退出操作; <br />
+新增 R键重新开始当前关卡，空格(Space)键回到选关主界面; <br />
 更新 GameRuleObserver()的_is_verb_grammar_valid()与_is_noun_grammar_valid()函数，现在支持当语法方块满足词法后会变成高亮显示，反之则添加透明度表示词法不成立; <br />
 修复 多个函数（is_win(), _is_defeat(), _is_weak()等）参数接口调用错误可能导致语法方块高亮失效的错误; <br />

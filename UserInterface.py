@@ -13,11 +13,12 @@ from Settings import *
 class UserInterface():
     def __init__(self, map):
         # pygame.init()
+        self._map = map
         self.worldSize = Vector2(WORLD_MAX_X, WORLD_MAX_Y)
         self._cellSize = Vector2(CELL_SIZE_X, CELL_SIZE_Y)
         _windowSize = self.worldSize.elementwise() * self._cellSize
         self._window = pygame.display.set_mode((int(_windowSize.x), int(_windowSize.y)))
-        self._gameState = GameState(map.load_map())
+        self._gameState = GameState(self._map.load_map())
         self._clock = pygame.time.Clock()
         self._running = True
         self._moveCommand = Vector2(0, 0)
@@ -36,12 +37,13 @@ class UserInterface():
         testObserver.endow(self._gameState.isBlockList)
         testObserver.transform(self._gameState.isBlockList)
 
-        if self._gameState.playerState or not self._gameState.aliveState:
+        if self._gameState.playerState:
             self._running = False
         if testObserver.is_win(self._gameState.isBlockList):
             self._gameState.playerState = True
         if testObserver.is_lose(self._gameState.units):
             self._gameState.aliveState = False
+
         for unit in self._gameState.units:
             if unit.is_control():
                 testObserver.move(unit, self._moveCommand)
@@ -64,6 +66,11 @@ class UserInterface():
                     self._moveCommand = BOTTOM_DIRECTION
                 elif event.key == pygame.K_UP:
                     self._moveCommand = TOP_DIRECTION
+                elif event.key == pygame.K_r:
+                    self._gameState = GameState(self._map.load_map())
+                elif event.key == pygame.K_SPACE:
+                    self._running = False
+                    break
 
     def _render_unit(self, unit):
         unit.cartoon()
