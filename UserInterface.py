@@ -1,3 +1,4 @@
+import copy
 import pygame
 
 from pygame.math import Vector2
@@ -58,13 +59,13 @@ class UserInterface():
                 if event.type == pygame.K_ESCAPE:
                     self._running = False
                     break
-                elif event.key == pygame.K_RIGHT:
+                elif event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                     self._moveCommand = RIGHT_DIRECTION
-                elif event.key == pygame.K_LEFT:
+                elif event.key == pygame.K_LEFT or event.key == pygame.K_a:
                     self._moveCommand = LEFT_DIRECTION
-                elif event.key == pygame.K_DOWN:
+                elif event.key == pygame.K_DOWN or event.key == pygame.K_s:
                     self._moveCommand = BOTTOM_DIRECTION
-                elif event.key == pygame.K_UP:
+                elif event.key == pygame.K_UP or event.key == pygame.K_w:
                     self._moveCommand = TOP_DIRECTION
                 elif event.key == pygame.K_r:
                     self._gameState = GameState(self._map.load_map())
@@ -81,7 +82,11 @@ class UserInterface():
 
         for unit in self._gameState.units:
             self._render_unit(unit)
-
+        if not self._gameState.aliveState:
+            self._window.blit(pygame.image.load("pics/R.png"), Vector2(200, 12))
+            self._window.blit(pygame.image.load("pics/button_restart_0_1.png"), Vector2(230, -3))
+            self._window.blit(pygame.image.load("pics/space.png"), Vector2(500, 0))
+            self._window.blit(pygame.image.load("pics/main_menu.png"), Vector2(595, -1))
         pygame.display.update()
 
     def run(self):
@@ -90,12 +95,3 @@ class UserInterface():
             self._update()
             self._render()
             self._clock.tick(60)
-
-
-if __name__ == '__main__':
-    pygame.init()
-    map = MapHell()
-    ui = UserInterface(map)  # 加载地图
-    ui.run()
-
-    pygame.quit()

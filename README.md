@@ -5,7 +5,7 @@ Todo lists: <br />
 1. （已实现） transform 的具体实现，以实现Noun-is-Noun的复杂谓词分析并转换方块的属性; <br />
 2. （已实现）其余动词(Settings.py中的VERB_WORD_BANK)的具体实现; <br />
 3. （已实现） 方块的动画效果，包括颜色、贴图转换等; <br />
-4. （实现中）游戏界面与关卡设计 <br />
+4. （已实现）游戏界面与关卡设计 <br />
 
 Update logs: <br />
 **1. 2020-12-04** <br />
@@ -56,3 +56,5 @@ Update logs: <br />
 新增 R键重新开始当前关卡，空格(Space)键回到选关主界面; <br />
 更新 GameRuleObserver()的_is_verb_grammar_valid()与_is_noun_grammar_valid()函数，现在支持当语法方块满足词法后会变成高亮显示，反之则添加透明度表示词法不成立; <br />
 修复 多个函数（is_win(), _is_defeat(), _is_weak()等）参数接口调用错误可能导致语法方块高亮失效的错误; <br />
+**11. 2020-12-23** <br />
+更新 选关界面与游戏操作的提示; <br />
