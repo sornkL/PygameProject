@@ -8,16 +8,12 @@ from Settings import *
 
 
 class GeneralBlock(BaseBlock):
-    def move(self, direction: Vector2, group):
-        if self.is_move() and self.is_control():
-            self.location += direction
-            self.rect = Rect(self.location.x, self.location.y, CELL_SIZE_X, CELL_SIZE_Y)
-
-            if self.location.x < 0 or self.location.x >= WORLD_MAX_X * CELL_SIZE_X or self.location.y < 0 \
-                    or self.location.y >= WORLD_MAX_Y * CELL_SIZE_Y \
-                    or self._is_collide(group):
-                self.location -= direction
-                self.rect = Rect(self.location.x, self.location.y, CELL_SIZE_X, CELL_SIZE_Y)
+    def __init__(self, id: str, location: Vector2, text=False, moveable=False, controllable=False, passable=False):
+        super().__init__(id, location, passable, moveable, controllable)
+        self._passable = False
+        self._controllable = False
+        self._moveable = False
+        self.texture = pygame.image.load("pics/black.png")
 
 
 class BabaBlock(BaseBlock):

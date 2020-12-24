@@ -143,7 +143,7 @@ class GameRuleObserver():
                     if _firstBlock.word in NOUN_WORD_BANK and _secondBlock.word in VERB_WORD_BANK:
                         for unit in self._gameState.units:
                             if unit == _firstBlock or unit == _secondBlock:
-                                unit.texture.set_alpha(NOALPHA)
+                                unit.texture.set_alpha(NO_ALPHA)
                         _isGrammarValid[i] = _firstBlock
                         _isGrammarValid[i+1] = _secondBlock
 
@@ -165,7 +165,7 @@ class GameRuleObserver():
                         # 符合语法规则变方块颜色
                         for unit in self._gameState.units:
                             if unit == _firstBlock or unit == _secondBlock:
-                                unit.texture.set_alpha(NOALPHA)
+                                unit.texture.set_alpha(NO_ALPHA)
                         _isGrammarValid[i] = _firstBlock
                         _isGrammarValid[i + 1] = _secondBlock
 
