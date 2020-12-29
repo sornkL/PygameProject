@@ -1,6 +1,6 @@
 from pygame.math import Vector2
 
-VERSION = ("Xie Ge", "1.0.1")
+VERSION = "1.0.2"
 
 WORLD_MAX_X = 30  # 地图x轴边界方块个数
 WORLD_MAX_Y = 20  # 地图y轴边界方块个数
@@ -21,3 +21,5 @@ DIRECTION = [TOP_DIRECTION, BOTTOM_DIRECTION, LEFT_DIRECTION, RIGHT_DIRECTION]  
 
 VERB_WORD_BANK = ['defeat', 'hot', 'is', 'push', 'stop', 'weak', 'win', 'you']  # 动词词库
 NOUN_WORD_BANK = ['baba', 'flag', 'jelly', 'lava', 'rock', 'skull', 'wall']  # 名词词库
+
+STATISTICS_FILE_PATH = "Statistics.json"  # 数据统计文件的相对路径

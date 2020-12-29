@@ -9,6 +9,7 @@ from MapLoader import *
 from GameRule import GameRuleObserver
 from GameState import *
 from Settings import *
+from StatisticsReader import *
 
 
 class UserInterface():
@@ -23,6 +24,7 @@ class UserInterface():
         self._clock = pygame.time.Clock()
         self._running = True
         self._moveCommand = Vector2(0, 0)
+        self._isCountSign = False
 
     def check_win_state(self):
         return self._gameState.playerState
@@ -42,8 +44,18 @@ class UserInterface():
             self._running = False
         if testObserver.is_win(self._gameState.isBlockList):
             self._gameState.playerState = True
+            if not self._isCountSign and type(self._map).__name__ != "MapMainMenu":
+                winCountList = check_win_count(STATISTICS_FILE_PATH)
+                mapId = int(type(self._map).__name__.split('Map')[1]) - 1
+                update_win_count(STATISTICS_FILE_PATH, type(self._map).__name__)
+                if winCountList[mapId] == 0:
+                    update_first_win_time(STATISTICS_FILE_PATH, type(self._map).__name__)
+                self._isCountSign = True
         if testObserver.is_lose(self._gameState.units):
             self._gameState.aliveState = False
+            if not self._isCountSign and type(self._map).__name__ != "MapMainMenu":
+                update_lose_count(STATISTICS_FILE_PATH, type(self._map).__name__)
+                self._isCountSign = True
 
         for unit in self._gameState.units:
             if unit.is_control():
@@ -69,6 +81,7 @@ class UserInterface():
                     self._moveCommand = TOP_DIRECTION
                 elif event.key == pygame.K_r:
                     self._gameState = GameState(self._map.load_map())
+                    self._isCountSign = False
                 elif event.key == pygame.K_SPACE:
                     self._running = False
                     break

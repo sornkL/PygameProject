@@ -13,9 +13,8 @@ map3 = Map3()
 map4 = Map4()
 map5 = Map5()
 map6 = Map6()
-mapHard = MapHard()
-mapHell = MapHell()
-choices = [mapMainMenu, map1, map2, map3, map4, map5, mapHard, mapHell, mapAbout]
+map7 = Map7()
+choices = [mapMainMenu, map1, map2, map3, map4, map5, map6, map7, mapAbout]
 
 running = True
 
@@ -39,9 +38,9 @@ while running:
                         mapChoice = 4
                     elif flag.location == unit.location and flag.id == "map5":
                         mapChoice = 5
-                    elif flag.location == unit.location and flag.id == "mapHard":
+                    elif flag.location == unit.location and flag.id == "map6":
                         mapChoice = 6
-                    elif flag.location == unit.location and flag.id == "mapHell":
+                    elif flag.location == unit.location and flag.id == "map7":
                         mapChoice = 7
                     elif flag.location == unit.location and flag.id == "mapAbout":
                         mapChoice = 8

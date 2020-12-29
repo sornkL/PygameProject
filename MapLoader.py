@@ -171,7 +171,7 @@ class MapMainMenu():
             WallBlock("00", Vector2(390, 150)),
 
             Block7("7", Vector2(600, 150)),
-            FlagBlock("mapHell", Vector2(600, 180)),
+            FlagBlock("map7", Vector2(600, 180)),
             RobotBlock("00", Vector2(630, 210)),
             RobotBlock("00", Vector2(570, 210)),
             PillarBlock("00", Vector2(660, 210)),
@@ -206,7 +206,7 @@ class MapMainMenu():
             WallBlock("00", Vector2(240, 390)),
 
             Block6("6", Vector2(450, 390)),
-            FlagBlock("mapHard", Vector2(450, 360)),
+            FlagBlock("map6", Vector2(450, 360)),
             RobotBlock("00", Vector2(420, 330)),
             RobotBlock("00", Vector2(480, 330)),
             PillarBlock("00", Vector2(510, 330)),
@@ -642,41 +642,6 @@ class Map5():
 class Map6():
     def load_map(self):
         units = [
-            BabaBlock("Baba",  Vector2(300, 270)),
-
-            WallBlock("01",  Vector2(240, 210)),
-            WallBlock("02",  Vector2(270, 210)),
-
-            SkullBlock("Skull01",  Vector2(600, 210)),
-            SkullBlock("Skull02",  Vector2(630, 210)),
-
-            FlagBlock("Flag",  Vector2(570, 270)),
-
-            WallNounBlock("BabaNoun",  Vector2(270, 150)),
-            IsBlock("Is01",  Vector2(300, 150)),
-            StopVerbBlock("YouVerb",  Vector2(330, 150)),
-
-            SkullNounBlock("RockNoun",  Vector2(540, 150)),
-            IsBlock("Is02",  Vector2(570, 150)),
-            PushVerbBlock("PushVerb",  Vector2(600, 150)),
-
-            BabaNounBlock("WallNoun",  Vector2(270, 390)),
-            IsBlock("Is03",  Vector2(300, 390)),
-            YouVerbBlock("StopVerb",  Vector2(330, 390)),
-
-            FlagNounBlock("FlagNoun",  Vector2(540, 390)),
-            IsBlock("Is04",  Vector2(570, 390)),
-            WinVerbBlock("WinVerb",  Vector2(600, 390)),
-            # WeakVerbBlock("testWeak", Vector2(600, 450)),
-            #DefeatVerbBlock("Defeat", Vector2(600, 510))
-        ]
-
-        return units
-
-
-class MapHard():
-    def load_map(self):
-        units = [
             WallNounBlock("LeftUp", Vector2(180,150)),
             WallNounBlock("RightBottom", Vector2(210+15*30,180+8*30)),
             #临时墙
@@ -795,7 +760,7 @@ class MapHard():
         return units
 
 
-class MapHell():
+class Map7():
     def load_map(self):
         units = [
             WallNounBlock("LeftUp", Vector2(180,150)),
