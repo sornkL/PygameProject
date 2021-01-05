@@ -66,4 +66,5 @@ Update logs: <br />
 新增 3张地图Map8, Map9, Map10; <br/>
 新增 open与shut属性，现在支持使用具有open属性的方块打开具有shut属性的方块，二者在接触时会同时消失; <br />
 更新 move()函数以支持新增的open与shut属性; <br />
+更新 Statistics.json以支持新增地图的数据统计; <br />
 修复 move()函数在没有玩家键盘输入的情况下仍然被调用可能产生的错误; <br />
