@@ -882,6 +882,290 @@ class Map7():
         return units
 
 
+class Map8():
+    def load_map(self):
+        units = [
+            BabaBlock("testBaba", Vector2(360, 240)),
+            RockBlock("testRock1", Vector2(420, 240)),
+
+            WallBlock("test04", Vector2(240, 90)),
+            WallBlock("test04", Vector2(270, 90)),
+            WallBlock("test04", Vector2(300, 90)),
+            WallBlock("test04", Vector2(330, 90)),
+            WallBlock("test04", Vector2(360, 90)),
+            WallBlock("test04", Vector2(390, 90)),
+            WallBlock("test04", Vector2(420, 90)),
+            WallBlock("test04", Vector2(450, 90)),
+            WallBlock("test04", Vector2(480, 90)),
+            WallBlock("test04", Vector2(510, 90)),
+            WallBlock("test04", Vector2(540, 90)),
+
+            WallBlock("test04", Vector2(540, 120)),
+            WallBlock("test04", Vector2(540, 150)),
+            WallBlock("test04", Vector2(540, 180)),
+            WallBlock("test04", Vector2(540, 210)),
+            WallBlock("test04", Vector2(540, 240)),
+
+            WallBlock("test04", Vector2(570, 240)),
+            WallBlock("test04", Vector2(600, 240)),
+            WallBlock("test04", Vector2(630, 240)),
+
+            WallBlock("test04", Vector2(630, 270)),
+            WallBlock("test04", Vector2(630, 300)),
+            WallBlock("test04", Vector2(630, 330)),
+            WallBlock("test04", Vector2(630, 360)),
+            WallBlock("test04", Vector2(630, 390)),
+            WallBlock("test04", Vector2(630, 420)),
+
+            WallBlock("test04", Vector2(630, 420)),
+            WallBlock("test04", Vector2(600, 420)),
+            WallBlock("test04", Vector2(570, 420)),
+            WallBlock("test04", Vector2(540, 420)),
+            WallBlock("test04", Vector2(510, 420)),
+            WallBlock("test04", Vector2(480, 420)),
+            WallBlock("test04", Vector2(450, 420)),
+            WallBlock("test04", Vector2(420, 420)),
+            WallBlock("test04", Vector2(390, 420)),
+            WallBlock("test04", Vector2(360, 420)),
+            WallBlock("test04", Vector2(330, 420)),
+            WallBlock("test04", Vector2(300, 420)),
+            WallBlock("test04", Vector2(270, 420)),
+            WallBlock("test04", Vector2(240, 420)),
+
+            WallBlock("test04", Vector2(240, 390)),
+            WallBlock("test04", Vector2(240, 360)),
+            WallBlock("test04", Vector2(240, 330)),
+            WallBlock("test04", Vector2(240, 300)),
+            WallBlock("test04", Vector2(240, 270)),
+            WallBlock("test04", Vector2(240, 240)),
+            WallBlock("test04", Vector2(240, 210)),
+            WallBlock("test04", Vector2(240, 180)),
+            WallBlock("test04", Vector2(240, 150)),
+            WallBlock("test04", Vector2(240, 120)),
+
+            BabaNounBlock("testBabaNoun", Vector2(360, 180)),
+            IsBlock("testIs01", Vector2(390, 180)),
+            YouVerbBlock("testYouVerb", Vector2(420, 180)),
+
+            RockNounBlock("testRockNoun", Vector2(360, 300)),
+            PushVerbBlock("testPushVerb", Vector2(420, 300)),
+
+            WinVerbBlock("testWinVerb", Vector2(600, 150)),
+
+            WallNounBlock("testWallNoun", Vector2(600, 300)),
+            IsBlock("testIs03", Vector2(600, 330)),
+            StopVerbBlock("testStopVerb", Vector2(600, 360)),
+        ]
+
+        return units
+
+
+class Map9():
+    def load_map(self):
+        units = [
+            BabaBlock("testBaba", Vector2(360, 240)),
+            RockBlock("testRock1", Vector2(420, 240)),
+
+            WallBlock("test04", Vector2(240, 90)),
+            WallBlock("test04", Vector2(270, 90)),
+            WallBlock("test04", Vector2(300, 90)),
+            WallBlock("test04", Vector2(330, 90)),
+            WallBlock("test04", Vector2(360, 90)),
+            WallBlock("test04", Vector2(390, 90)),
+            WallBlock("test04", Vector2(420, 90)),
+            WallBlock("test04", Vector2(450, 90)),
+            WallBlock("test04", Vector2(480, 90)),
+            WallBlock("test04", Vector2(510, 90)),
+            WallBlock("test04", Vector2(540, 90)),
+
+            WallBlock("test04", Vector2(540, 120)),
+            WallBlock("test04", Vector2(540, 150)),
+            WallBlock("test04", Vector2(540, 180)),
+            WallBlock("test04", Vector2(540, 210)),
+            WallBlock("test04", Vector2(540, 240)),
+
+            WallBlock("test04", Vector2(570, 240)),
+            WallBlock("test04", Vector2(600, 240)),
+            WallBlock("test04", Vector2(630, 240)),
+
+            WallBlock("test04", Vector2(630, 270)),
+            WallBlock("test04", Vector2(630, 300)),
+            WallBlock("test04", Vector2(630, 330)),
+            WallBlock("test04", Vector2(630, 360)),
+            WallBlock("test04", Vector2(630, 390)),
+
+
+            WallBlock("test04", Vector2(630, 420)),
+            WallBlock("test04", Vector2(600, 420)),
+            WallBlock("test04", Vector2(570, 420)),
+            WallBlock("test04", Vector2(540, 420)),
+            WallBlock("test04", Vector2(510, 420)),
+            WallBlock("test04", Vector2(480, 420)),
+            WallBlock("test04", Vector2(450, 420)),
+            WallBlock("test04", Vector2(420, 420)),
+            WallBlock("test04", Vector2(390, 420)),
+            WallBlock("test04", Vector2(360, 420)),
+            WallBlock("test04", Vector2(330, 420)),
+            WallBlock("test04", Vector2(300, 420)),
+            WallBlock("test04", Vector2(270, 420)),
+            WallBlock("test04", Vector2(240, 420)),
+
+            WallBlock("test04", Vector2(240, 390)),
+            WallBlock("test04", Vector2(240, 360)),
+            WallBlock("test04", Vector2(240, 330)),
+            WallBlock("test04", Vector2(240, 300)),
+            WallBlock("test04", Vector2(240, 270)),
+            WallBlock("test04", Vector2(240, 240)),
+            WallBlock("test04", Vector2(240, 210)),
+            WallBlock("test04", Vector2(240, 180)),
+            WallBlock("test04", Vector2(240, 150)),
+            WallBlock("test04", Vector2(240, 120)),
+
+            BabaNounBlock("testBabaNoun", Vector2(360, 180)),
+            IsBlock("testIs01", Vector2(390, 180)),
+            YouVerbBlock("testYouVerb", Vector2(420, 180)),
+
+            RockNounBlock("testRockNoun", Vector2(360, 300)),
+            IsBlock("testIs", Vector2(390, 300)),
+
+            WinVerbBlock("testWinVerb", Vector2(600, 150)),
+
+            WallNounBlock("testWallNoun", Vector2(600, 300)),
+            IsBlock("testIs03", Vector2(600, 330)),
+            StopVerbBlock("testStopVerb", Vector2(600, 360)),
+        ]
+
+        return units
+
+
+class Map10():
+    def load_map(self):
+        units = [
+            BabaBlock("testBaba", Vector2(240, 240)),
+            KeyBlock("testkey", Vector2(180, 240)),
+
+            WallBlock("test04", Vector2(120, 60)),
+            WallBlock("test04", Vector2(150, 60)),
+            WallBlock("test04", Vector2(180, 60)),
+            WallBlock("test04", Vector2(210, 60)),
+            WallBlock("test04", Vector2(240, 60)),
+
+            WallBlock("test04", Vector2(120, 90)),
+            BabaNounBlock("testBabaNoun", Vector2(150, 90)),
+            IsBlock("testIs01", Vector2(180, 90)),
+            YouVerbBlock("testYouVerb", Vector2(210, 90)),
+            WallBlock("test04", Vector2(240, 90)),
+
+            WallBlock("test04", Vector2(120, 120)),
+            WallBlock("test04", Vector2(150, 120)),
+            WallBlock("test04", Vector2(180, 120)),
+            WallBlock("test04", Vector2(210, 120)),
+            WallBlock("test04", Vector2(240, 120)),
+
+            WallBlock("test04", Vector2(120, 150)),
+            WallNounBlock("testWallNoun", Vector2(150, 150)),
+            IsBlock("testIs03", Vector2(180, 150)),
+            StopVerbBlock("testStopVerb", Vector2(210, 150)),
+            WallBlock("test04", Vector2(240, 150)),
+
+            WallBlock("test04", Vector2(120, 180)),
+            WallBlock("test04", Vector2(120, 210)),
+            WallBlock("test04", Vector2(120, 240)),
+            WallBlock("test04", Vector2(120, 270)),
+            WallBlock("test04", Vector2(120, 300)),
+            WallBlock("test04", Vector2(150, 180)),
+            WallBlock("test04", Vector2(180, 180)),
+            WallBlock("test04", Vector2(210, 180)),
+            WallBlock("test04", Vector2(240, 180)),
+            WallBlock("test04", Vector2(270, 180)),
+            WallBlock("test04", Vector2(300, 180)),
+            WallBlock("test04", Vector2(150, 300)),
+            WallBlock("test04", Vector2(180, 300)),
+            WallBlock("test04", Vector2(210, 300)),
+            WallBlock("test04", Vector2(240, 300)),
+            WallBlock("test04", Vector2(270, 300)),
+            WallBlock("test04", Vector2(300, 300)),
+            WallBlock("test04", Vector2(300, 270)),
+            DoorBlock("test04", Vector2(300, 240)),
+            WallBlock("test04", Vector2(300, 210)),
+
+            KeyNounBlock("keynoun", Vector2(240,360)),
+            IsBlock("is",Vector2(270,360)),
+            OpenVerbBlock("open",Vector2(300,360)),
+            IsBlock("is", Vector2(240,390)),
+            PushVerbBlock("push", Vector2(240,420)),
+
+            RockBlock("rock",Vector2(360,240)),
+            KeyBlock("key", Vector2(390, 240)),
+            DoorBlock("door",Vector2(450,240)),
+            RockNounBlock("rocknoun",Vector2(540,240)),
+            DoorBlock("door", Vector2(540,300)),
+            FlagBlock("flag",Vector2(540,360)),
+            FlagNounBlock("testflagNoun", Vector2(510, 420)),
+            IsBlock("testIs", Vector2(540, 420)),
+            WinVerbBlock("win",Vector2(570,420)),
+
+            WallBlock("wall",Vector2(450, 210)),
+            WallBlock("wall", Vector2(450, 180)),
+            WallBlock("wall", Vector2(480, 180)),
+            WallBlock("wall", Vector2(480, 150)),
+            WallBlock("wall", Vector2(480, 120)),
+
+            WallBlock("wall", Vector2(480, 90)),
+            WallBlock("wall", Vector2(480, 60)),
+            WallBlock("wall", Vector2(510, 60)),
+            WallBlock("wall", Vector2(540, 60)),
+            WallBlock("wall", Vector2(570, 60)),
+            WallBlock("wall", Vector2(600, 60)),
+            WallBlock("wall", Vector2(600, 90)),
+            DoorNounBlock("doornoun",Vector2(510,90)),
+            IsBlock("is",Vector2(540,90)),
+            ShutVerbBlock("stop", Vector2(570, 90)),
+            WallBlock("wall", Vector2(600, 120)),
+            WallBlock("wall", Vector2(600, 150)),
+            WallBlock("wall", Vector2(600, 180)),
+            WallBlock("wall", Vector2(570, 120)),
+            WallBlock("wall", Vector2(540, 120)),
+            WallBlock("wall", Vector2(510, 120)),
+            DoorNounBlock("doornoun",Vector2(510,150)),
+            IsBlock("is", Vector2(540, 150)),
+            StopVerbBlock("stop", Vector2(570, 150)),
+
+            WallBlock("wall", Vector2(510, 180)),
+            WallBlock("wall", Vector2(540, 180)),
+            WallBlock("wall", Vector2(570, 180)),
+            WallBlock("wall", Vector2(600, 180)),
+            WallBlock("wall", Vector2(630, 180)),
+            WallBlock("wall", Vector2(630, 210)),
+            WallBlock("wall", Vector2(630, 240)),
+            WallBlock("wall", Vector2(630, 270)),
+            WallBlock("wall", Vector2(630, 300)),
+            WallBlock("wall", Vector2(600, 300)),
+            WallBlock("wall", Vector2(570, 300)),
+            WallBlock("wall", Vector2(510, 300)),
+            WallBlock("wall", Vector2(480, 300)),
+            WallBlock("wall", Vector2(450, 300)),
+            WallBlock("wall", Vector2(450, 270)),
+            WallBlock("wall", Vector2(450, 330)),
+            WallBlock("wall", Vector2(450, 360)),
+            WallBlock("wall", Vector2(450, 390)),
+            WallBlock("wall", Vector2(480, 390)),
+            WallBlock("wall", Vector2(480, 420)),
+            WallBlock("wall", Vector2(480, 450)),
+            WallBlock("wall", Vector2(510, 450)),
+            WallBlock("wall", Vector2(540, 450)),
+            WallBlock("wall", Vector2(570, 450)),
+            WallBlock("wall", Vector2(600, 450)),
+            WallBlock("wall", Vector2(600, 420)),
+            WallBlock("wall", Vector2(600, 390)),
+            WallBlock("wall", Vector2(600, 360)),
+            WallBlock("wall", Vector2(600, 330)),
+
+        ]
+
+        return units
+
+
 class MapAbout:
     def load_map(self):
         units = [

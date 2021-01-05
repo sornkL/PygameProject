@@ -20,6 +20,7 @@ class UserInterface():
         self._cellSize = Vector2(CELL_SIZE_X, CELL_SIZE_Y)
         _windowSize = self.worldSize.elementwise() * self._cellSize
         self._window = pygame.display.set_mode((int(_windowSize.x), int(_windowSize.y)))
+        pygame.display.set_caption(GAME_TITLE + " - " + str(type(map).__name__))
         self._gameState = GameState(self._map.load_map())
         self._clock = pygame.time.Clock()
         self._running = True
@@ -58,8 +59,12 @@ class UserInterface():
                 self._isCountSign = True
 
         for unit in self._gameState.units:
-            if unit.is_control():
+            if unit.is_control() and self._moveCommand != Vector2(0, 0):
                 testObserver.move(unit, self._moveCommand)
+
+                # testObserver._teleport()
+                # print(testObserver._is_exist_line(unit, self._moveCommand), testObserver._is_collide(unit, self._moveCommand))
+                # testObserver._teleport()
 
     def _process_input(self):
         self._moveCommand = Vector2(0, 0)
@@ -108,3 +113,10 @@ class UserInterface():
             self._update()
             self._render()
             self._clock.tick(60)
+
+
+if __name__ == '__main__':
+    mapTemp = Map10()
+    ui = UserInterface(mapTemp)
+    ui.run()
+    pygame.quit()
