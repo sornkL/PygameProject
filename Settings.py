@@ -1,7 +1,7 @@
 from pygame.math import Vector2
 
-VERSION = "1.0.2"
-GAME_TITLE = "BaBa is You 2077"
+VERSION = "1.1.1"  # 游戏版本号
+GAME_TITLE = "BaBa is You 2077"  # 游戏标题
 
 WORLD_MAX_X = 30  # 地图x轴边界方块个数
 WORLD_MAX_Y = 20  # 地图y轴边界方块个数
