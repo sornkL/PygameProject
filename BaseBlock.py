@@ -4,7 +4,6 @@ from Settings import *
 
 from pygame.math import Vector2
 from pygame.rect import Rect
-from pygame.sprite import AbstractGroup
 from typing import Union
 
 
@@ -20,7 +19,7 @@ class BaseBlock():
         :param texture: 方块的贴图
         """
 
-        self._id = id
+        self.id = id
         self._text = text
         self._passable = passable
         self._moveable = moveable

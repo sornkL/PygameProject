@@ -4,8 +4,8 @@ This is a repository for the final assignment of "Introduction to Computer Scien
 Todo lists: <br />
 1. （已实现） transform 的具体实现，以实现Noun-is-Noun的复杂谓词分析并转换方块的属性; <br />
 2. （已实现）其余动词(Settings.py中的VERB_WORD_BANK)的具体实现; <br />
-3. （实现中） 方块的动画效果，包括颜色、贴图转换等; <br />
-4. 游戏界面与关卡设计 <br />
+3. （已实现） 方块的动画效果，包括颜色、贴图转换等; <br />
+4. （已实现）游戏界面与关卡设计 <br />
 
 Update logs: <br />
 **1. 2020-12-04** <br />
@@ -45,8 +45,20 @@ Update logs: <br />
 更新 SkullBlock, WallBlock, 语法方块（暂不包含Weak和Defeat）动画/贴图效果; <br />
 修复 transform()无法变换不在场方块的错误; <br />
 **9. 2020-12-17** <br />
-新增 MapHard地图; <br />
-新增 Map3地图; <br />
+分离 UserInterface（WorldMap现在更名为UserInterface），现在程序的主入口被置于main.py中; <br />
+新增 Map3、Map4、Map5、MapHard、MapHell地图; <br />
+新增 JellyBlock及其语法方块; <br />
 修复 RockBlock, SkullBlock的passable初始属性，现在都为True; <br />
 修复 多个方块具有同样属性时可能导致赋予部分方块属性时失效的错误; <br />
 修复 transform()无法变换从未出现过的方块时会产生的错误; <br />
+**10. 2020-12-21** <br />
+重构 main.py，现在支持简单的选关操作和游戏退出操作; <br />
+新增 R键重新开始当前关卡，空格(Space)键回到选关主界面; <br />
+更新 GameRuleObserver()的_is_verb_grammar_valid()与_is_noun_grammar_valid()函数，现在支持当语法方块满足词法后会变成高亮显示，反之则添加透明度表示词法不成立; <br />
+修复 多个函数（is_win(), _is_defeat(), _is_weak()等）参数接口调用错误可能导致语法方块高亮失效的错误; <br />
+**11. 2020-12-23** <br />
+更新 选关界面与游戏操作的提示; <br />
+**12. 2020-12-24** <br />
+修复 方块可能被推出游戏界面的错误; <br />
+**13. 2020-12-29** <br />
+新增 数据统计文件Statistics.json，现在支持每个关卡胜利次数和失败次数的统计，以及每个关卡首次通关的时间统计; <br />
