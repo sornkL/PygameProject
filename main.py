@@ -28,10 +28,13 @@ while running:
         for unit in ui._gameState.units:
             if unit.is_control():
                 for flag in ui._gameState.units:
-                    if flag.location == unit.location and flag != unit:
-                        mapChoice = int(flag.id.split("map")[1])
-                    if flag.location == unit.location and flag.id == "quit":
-                        running = False
+                    if flag.location == unit.location:
+                        if flag != unit and flag.id != "quit" and flag.id != "mapAbout":
+                            mapChoice = int(flag.id.split("map")[1])
+                        elif flag.id == "quit":
+                            running = False
+                        elif flag.id == "mapAbout":
+                            mapChoice = 8
 
         if not running:
             break

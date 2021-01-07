@@ -29,10 +29,11 @@ class UserInterface():
 
         if type(self._map) == MapMainMenu:
             pygame.mixer.music.load("music/menu.ogg")
-            pygame.mixer.music.play(-1)
+        elif type(self._map) == MapAbout:
+            pygame.mixer.music.load("music/map.ogg")
         else:
             pygame.mixer.music.load("music/garden.ogg")
-            pygame.mixer.music.play(-1)
+        pygame.mixer.music.play(-1)
 
     def check_win_state(self):
         return self._gameState.playerState
