@@ -27,6 +27,13 @@ class UserInterface():
         self._moveCommand = Vector2(0, 0)
         self._isCountSign = False
 
+        if type(self._map) == MapMainMenu:
+            pygame.mixer.music.load("music/menu.ogg")
+            pygame.mixer.music.play(-1)
+        else:
+            pygame.mixer.music.load("music/garden.ogg")
+            pygame.mixer.music.play(-1)
+
     def check_win_state(self):
         return self._gameState.playerState
 
