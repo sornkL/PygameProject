@@ -28,23 +28,9 @@ while running:
         for unit in ui._gameState.units:
             if unit.is_control():
                 for flag in ui._gameState.units:
-                    if flag.location == unit.location and flag.id == "map1":
-                        mapChoice = 1
-                    elif flag.location == unit.location and flag.id == "map2":
-                        mapChoice = 2
-                    elif flag.location == unit.location and flag.id == "map3":
-                        mapChoice = 3
-                    elif flag.location == unit.location and flag.id == "map4":
-                        mapChoice = 4
-                    elif flag.location == unit.location and flag.id == "map5":
-                        mapChoice = 5
-                    elif flag.location == unit.location and flag.id == "map6":
-                        mapChoice = 6
-                    elif flag.location == unit.location and flag.id == "map7":
-                        mapChoice = 7
-                    elif flag.location == unit.location and flag.id == "mapAbout":
-                        mapChoice = 8
-                    elif flag.location == unit.location and flag.id == "quit":
+                    if flag.location == unit.location and flag != unit:
+                        mapChoice = int(flag.id.split("map")[1])
+                    if flag.location == unit.location and flag.id == "quit":
                         running = False
 
         if not running:
