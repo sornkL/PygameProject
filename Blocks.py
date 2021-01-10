@@ -21,8 +21,8 @@ class BabaBlock(BaseBlock):
         self.id = id
         self._text = False
         self._moveable = True
-        self._controllable = True
-        self._passable = False
+        self._controllable = False
+        self._passable = True
         self.location = location
         self.textureLeft = pygame.image.load('pics/baba_18_1.png')
         self.textureRight = pygame.image.load('pics/baba_0_1.png')
@@ -31,6 +31,17 @@ class BabaBlock(BaseBlock):
         self.texture = self.textureRight
         self.transparentTexture = pygame.image.load('pics/baba_18_1.png').convert_alpha()
         self.transparentTexture.set_alpha(ALPHA)
+
+    def cartoon(self):
+        """
+        对于无动画效果的方块，当其可以通过时，将不透明度调低
+        :return:
+        """
+        if not self.is_control():
+            if self.is_pass():
+                self.texture = self.transparentTexture
+            else:
+                self.texture = self.textureLeft
 
     def change_direction(self, direction: Vector2):
         """
