@@ -145,11 +145,3 @@ class UserInterface():
             self._update()
             self._render()
             self._clock.tick(60)
-
-
-if __name__ == '__main__':
-    mapTemp = Map9()
-    pygame.init()
-    ui = UserInterface(mapTemp)
-    ui.run()
-    pygame.quit()

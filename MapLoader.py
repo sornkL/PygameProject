@@ -273,7 +273,6 @@ class MapMainMenu():
 class Map1():
     def load_map(self):
         units = [
-            BabaBlock("testBaba", Vector2(360, 270)),
 
             TileBlock("00", Vector2(240, 240)),
             TileBlock("00", Vector2(270, 240)),
@@ -370,6 +369,8 @@ class Map1():
             FlagNounBlock("testFlagNoun", Vector2(540, 390)),
             IsBlock("testIs04", Vector2(570, 390)),
             WinVerbBlock("testWinVerb", Vector2(600, 390)),
+
+            BabaBlock("testBaba", Vector2(360, 270))
         ]
 
         return units
@@ -504,8 +505,6 @@ class Map3():
             WallBlock("Null", Vector2(540, 390)),
             # 结束墙
 
-            BabaBlock("Baba", Vector2(330, 180)),
-
             TileBlock("l-u", Vector2(360, 180)),
             TileBlock("l-u", Vector2(390, 180)),
             TileBlock("l-u", Vector2(420, 180)),
@@ -571,6 +570,7 @@ class Map3():
             IsBlock("Is03", Vector2(30, 0)),
             DefeatVerbBlock("DefeatVerbBlock", Vector2(60, 0)),
 
+            BabaBlock("Baba", Vector2(330, 180))
         ]
 
         return units
