@@ -14,7 +14,11 @@ map4 = Map4()
 map5 = Map5()
 map6 = Map6()
 map7 = Map7()
-choices = [mapMainMenu, map1, map2, map3, map4, map5, map6, map7, mapAbout]
+map8 = Map8()
+map9 = Map9()
+map10 = Map10()
+map11 = Map11()
+choices = [mapMainMenu, map1, map2, map3, map4, map5, map6, map7, map8, map9, map10, map11, mapAbout]
 
 running = True
 
@@ -34,7 +38,7 @@ while running:
                         elif flag.id == "quit":
                             running = False
                         elif flag.id == "mapAbout":
-                            mapChoice = 8
+                            mapChoice = 12
 
         if not running:
             break

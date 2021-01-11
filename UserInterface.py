@@ -108,9 +108,17 @@ class UserInterface():
                     self._running = False
                     break
                 elif event.type == pygame.KEYDOWN:
-                    #if event.key == pygame.K_RETURN:
                     self._countdown_time = 0
             self._window.blit(self._loadingPicture, Vector2(0, 0))
+            self._window.blit(pygame.image.load("pics/anykey.png"), Vector2(380, 500))
+            if type(self._map).__name__ != "MapMainMenu" and type(self._map).__name__ != "MapAbout":
+                self._render_unit(FlagBlock("WIN_COUNT_FLAG", Vector2(2, 0), passable=False))
+                self._window.blit(pygame.image.load("pics/text_win_count.png"), Vector2(30, 0))
+                self._window.blit(pygame.image.load("pics/icon_skull.png"), Vector2(2, 30))
+                self._window.blit(pygame.image.load("pics/text_lose_count.png"), Vector2(30, 30))
+                self._window.blit(pygame.image.load("pics/icon_clock.png"), Vector2(2, 60))
+                self._window.blit(pygame.image.load("pics/text_time_win.png"), Vector2(30, 60))
+                statistics_display(self._window, int(type(self._map).__name__.split("Map")[1])-1)
             pygame.display.update()
             self._countdown_time -= 1
 
@@ -140,7 +148,7 @@ class UserInterface():
 
 
 if __name__ == '__main__':
-    mapTemp = Map1()
+    mapTemp = Map9()
     pygame.init()
     ui = UserInterface(mapTemp)
     ui.run()
