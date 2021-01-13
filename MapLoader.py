@@ -464,6 +464,45 @@ class Map2():
 class Map3():
     def load_map(self):
         units = [
+            TileBlock("l-u", Vector2(360, 180)),
+            TileBlock("l-u", Vector2(390, 180)),
+            TileBlock("l-u", Vector2(420, 180)),
+            TileBlock("l-u", Vector2(450, 180)),
+            TileBlock("l-u", Vector2(480, 180)),
+            TileBlock("r-u", Vector2(510, 180)),
+            TileBlock("r-u", Vector2(510, 210)),
+            TileBlock("r-u", Vector2(510, 240)),
+            TileBlock("r-u", Vector2(510, 270)),
+            TileBlock("r-u", Vector2(510, 300)),
+            TileBlock("r-u", Vector2(510, 330)),
+            TileBlock("r-u", Vector2(510, 360)),
+            TileBlock("r-b", Vector2(510, 390)),
+            TileBlock("r-b", Vector2(480, 390)),
+            TileBlock("r-b", Vector2(450, 390)),
+            TileBlock("r-b", Vector2(420, 390)),
+            TileBlock("r-b", Vector2(390, 390)),
+            TileBlock("r-b", Vector2(360, 390)),
+
+            TileBlock("l-b", Vector2(330, 390)),
+            TileBlock("l-b", Vector2(330, 360)),
+            TileBlock("l-b", Vector2(330, 330)),
+            TileBlock("l-b", Vector2(330, 300)),
+            TileBlock("l-b", Vector2(330, 270)),
+            TileBlock("l-b", Vector2(330, 240)),
+            TileBlock("l-b", Vector2(330, 210)),
+            TileBlock("l-u", Vector2(330, 180)),
+
+            TileBlock("BabaNounBlock", Vector2(120, 300)),
+            TileBlock("Is00", Vector2(150, 300)),
+            TileBlock("YouVerbBlock", Vector2(180, 300)),
+
+            TileBlock("BabaNounBlock", Vector2(120, 270)),
+            TileBlock("Is00", Vector2(150, 270)),
+            TileBlock("YouVerbBlock", Vector2(180, 270)),
+
+            TileBlock("FlagNounBlock", Vector2(120, 240)),
+            TileBlock("Is01", Vector2(150, 240)),
+            TileBlock("WinVerbBlock", Vector2(180, 240)),
 
             # 临时墙
             WallBlock("Null", Vector2(300, 150)),
@@ -504,46 +543,6 @@ class Map3():
             WallBlock("Null", Vector2(540, 360)),
             WallBlock("Null", Vector2(540, 390)),
             # 结束墙
-
-            TileBlock("l-u", Vector2(360, 180)),
-            TileBlock("l-u", Vector2(390, 180)),
-            TileBlock("l-u", Vector2(420, 180)),
-            TileBlock("l-u", Vector2(450, 180)),
-            TileBlock("l-u", Vector2(480, 180)),
-            TileBlock("r-u", Vector2(510, 180)),
-            TileBlock("r-u", Vector2(510, 210)),
-            TileBlock("r-u", Vector2(510, 240)),
-            TileBlock("r-u", Vector2(510, 270)),
-            TileBlock("r-u", Vector2(510, 300)),
-            TileBlock("r-u", Vector2(510, 330)),
-            TileBlock("r-u", Vector2(510, 360)),
-            TileBlock("r-b", Vector2(510, 390)),
-            TileBlock("r-b", Vector2(480, 390)),
-            TileBlock("r-b", Vector2(450, 390)),
-            TileBlock("r-b", Vector2(420, 390)),
-            TileBlock("r-b", Vector2(390, 390)),
-            TileBlock("r-b", Vector2(360, 390)),
-
-            TileBlock("l-b", Vector2(330, 390)),
-            TileBlock("l-b", Vector2(330, 360)),
-            TileBlock("l-b", Vector2(330, 330)),
-            TileBlock("l-b", Vector2(330, 300)),
-            TileBlock("l-b", Vector2(330, 270)),
-            TileBlock("l-b", Vector2(330, 240)),
-            TileBlock("l-b", Vector2(330, 210)),
-            TileBlock("l-u", Vector2(330, 180)),
-
-            TileBlock("BabaNounBlock", Vector2(120, 300)),
-            TileBlock("Is00", Vector2(150, 300)),
-            TileBlock("YouVerbBlock", Vector2(180, 300)),
-
-            TileBlock("BabaNounBlock", Vector2(120, 270)),
-            TileBlock("Is00", Vector2(150, 270)),
-            TileBlock("YouVerbBlock", Vector2(180, 270)),
-
-            TileBlock("FlagNounBlock", Vector2(120, 240)),
-            TileBlock("Is01", Vector2(150, 240)),
-            TileBlock("WinVerbBlock", Vector2(180, 240)),
 
             RockBlock("01", Vector2(330, 240)),
             RockBlock("01", Vector2(360, 240)),
@@ -591,6 +590,21 @@ class Map4():
             TileBlock("0", Vector2(330, 240)),
             TileBlock("0", Vector2(330, 270)),
             TileBlock("0", Vector2(330, 300)),
+            TileBlock("RockNounBlock", Vector2(270, 120)),
+            TileBlock("Is02", Vector2(300, 120)),
+            TileBlock("PushVerbBlock", Vector2(330, 120)),
+            TileBlock("WallNoun", Vector2(270, 420)),
+            TileBlock("Is03", Vector2(300, 420)),
+            TileBlock("StopVerb", Vector2(330, 420)),
+            TileBlock("Flag", Vector2(600, 240)),
+            TileBlock("Flag", Vector2(600, 270)),
+            TileBlock("Flag", Vector2(600, 300)),
+            TileBlock("Flag", Vector2(630, 240)),
+            TileBlock("Flag", Vector2(630, 270)),
+            TileBlock("Flag", Vector2(630, 300)),
+            TileBlock("Flag", Vector2(660, 240)),
+            TileBlock("Flag", Vector2(660, 270)),
+            TileBlock("Flag", Vector2(660, 300)),
 
 
             WallBlock("n", Vector2(0, -30)),
@@ -616,9 +630,7 @@ class Map4():
             WallBlock("15", Vector2(240, 270)),
             WallBlock("16", Vector2(240, 300)),
 
-            TileBlock("RockNounBlock", Vector2(270, 120)),
-            TileBlock("Is02", Vector2(300, 120)),
-            TileBlock("PushVerbBlock", Vector2(330, 120)),
+
 
             RockNounBlock("RockNounBlock", Vector2(270, 120)),
             IsBlock("Is02", Vector2(300, 120)),
@@ -630,23 +642,11 @@ class Map4():
             RockBlock("20", Vector2(660, 90)),
             RockBlock("21", Vector2(450, 390)),
 
-            TileBlock("WallNoun", Vector2(270, 420)),
-            TileBlock("Is03", Vector2(300, 420)),
-            TileBlock("StopVerb", Vector2(330, 420)),
 
             BabaNounBlock("WallNoun", Vector2(270, 420)),
             IsBlock("Is03", Vector2(300, 420)),
             YouVerbBlock("StopVerb", Vector2(330, 420)),
 
-            TileBlock("Flag", Vector2(600, 240)),
-            TileBlock("Flag", Vector2(600, 270)),
-            TileBlock("Flag", Vector2(600, 300)),
-            TileBlock("Flag", Vector2(630, 240)),
-            TileBlock("Flag", Vector2(630, 270)),
-            TileBlock("Flag", Vector2(630, 300)),
-            TileBlock("Flag", Vector2(660, 240)),
-            TileBlock("Flag", Vector2(660, 270)),
-            TileBlock("Flag", Vector2(660, 300)),
 
             FlagBlock("Flag", Vector2(630, 270)),
 
@@ -1070,7 +1070,6 @@ class Map8():
             WallBlock("test04", Vector2(630, 330)),
             WallBlock("test04", Vector2(630, 360)),
             WallBlock("test04", Vector2(630, 390)),
-            WallBlock("test04", Vector2(630, 420)),
 
             WallBlock("test04", Vector2(630, 420)),
             WallBlock("test04", Vector2(600, 420)),
