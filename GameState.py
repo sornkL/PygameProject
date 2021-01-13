@@ -24,8 +24,10 @@ class GameState():
 
         self.subjectBlockList = [
             BabaBlock("DEFAULT_BABA", Vector2(0, 0)),
+            DoorBlock("DEFAULT_DOOR", Vector2(0, 0)),
             FlagBlock("DEFAULT_FLAG", Vector2(0, 0)),
             JellyBlock("DEFAULT_JELLY", Vector2(0, 0)),
+            KeyBlock("DEFAULT_KEY", Vector2(0, 0)),
             RockBlock("DEFAULT_ROCK", Vector2(0, 0)),
             SkullBlock("DEFAULT_SKULL", Vector2(0, 0)),
             WallBlock("DEFAULT_WALL", Vector2(0, 0)),

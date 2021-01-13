@@ -14,7 +14,11 @@ map4 = Map4()
 map5 = Map5()
 map6 = Map6()
 map7 = Map7()
-choices = [mapMainMenu, map1, map2, map3, map4, map5, map6, map7, mapAbout]
+map8 = Map8()
+map9 = Map9()
+map10 = Map10()
+map11 = Map11()
+choices = [mapMainMenu, map1, map2, map3, map4, map5, map6, map7, map8, map9, map10, map11, mapAbout]
 
 running = True
 
@@ -28,24 +32,13 @@ while running:
         for unit in ui._gameState.units:
             if unit.is_control():
                 for flag in ui._gameState.units:
-                    if flag.location == unit.location and flag.id == "map1":
-                        mapChoice = 1
-                    elif flag.location == unit.location and flag.id == "map2":
-                        mapChoice = 2
-                    elif flag.location == unit.location and flag.id == "map3":
-                        mapChoice = 3
-                    elif flag.location == unit.location and flag.id == "map4":
-                        mapChoice = 4
-                    elif flag.location == unit.location and flag.id == "map5":
-                        mapChoice = 5
-                    elif flag.location == unit.location and flag.id == "map6":
-                        mapChoice = 6
-                    elif flag.location == unit.location and flag.id == "map7":
-                        mapChoice = 7
-                    elif flag.location == unit.location and flag.id == "mapAbout":
-                        mapChoice = 8
-                    elif flag.location == unit.location and flag.id == "quit":
-                        running = False
+                    if flag.location == unit.location:
+                        if flag != unit and flag.id != "quit" and flag.id != "mapAbout":
+                            mapChoice = int(flag.id.split("map")[1])
+                        elif flag.id == "quit":
+                            running = False
+                        elif flag.id == "mapAbout":
+                            mapChoice = 12
 
         if not running:
             break

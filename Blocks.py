@@ -21,8 +21,8 @@ class BabaBlock(BaseBlock):
         self.id = id
         self._text = False
         self._moveable = True
-        self._controllable = True
-        self._passable = False
+        self._controllable = False
+        self._passable = True
         self.location = location
         self.textureLeft = pygame.image.load('pics/baba_18_1.png')
         self.textureRight = pygame.image.load('pics/baba_0_1.png')
@@ -31,6 +31,17 @@ class BabaBlock(BaseBlock):
         self.texture = self.textureRight
         self.transparentTexture = pygame.image.load('pics/baba_18_1.png').convert_alpha()
         self.transparentTexture.set_alpha(ALPHA)
+
+    def cartoon(self):
+        """
+        对于无动画效果的方块，当其可以通过时，将不透明度调低
+        :return:
+        """
+        if not self.is_control():
+            if self.is_pass():
+                self.texture = self.transparentTexture
+            else:
+                self.texture = self.textureLeft
 
     def change_direction(self, direction: Vector2):
         """
@@ -94,7 +105,7 @@ class FlagBlock(BaseBlock):
 
 class SkullBlock(BaseBlock):
     def __init__(self, id: str, location: Vector2, text=False, moveable=False, controllable=False, passable=True):
-        super().__init__(id,location,passable, moveable, controllable)
+        super().__init__(id, location, passable, moveable, controllable)
         self._passable = True
         self._controllable = False
         self._moveable = True
@@ -263,6 +274,81 @@ class JellyBlock(BaseBlock):
         else:
             self.frame = 0
 
+
+class DoorBlock(BaseBlock):
+    def __init__(self, id: str, location: Vector2, moveable=False, controllable=False, passable=True):
+        super().__init__(id, location, passable, moveable, controllable)
+        self._passable = True
+        self._controllable = False
+        self._moveable = True
+        self._text = False
+        self.textureList = [pygame.image.load('pics/door_0_1.png'), pygame.image.load('pics/door_0_2.png'),
+                            pygame.image.load('pics/door_0_3.png')]
+        pic1 = pygame.image.load('pics/door_0_1.png').convert_alpha()
+        pic2 = pygame.image.load('pics/door_0_2.png').convert_alpha()
+        pic3 = pygame.image.load('pics/door_0_3.png').convert_alpha()
+        pic1.set_alpha(ALPHA)
+        pic2.set_alpha(ALPHA)
+        pic3.set_alpha(ALPHA)
+        self.transparentTextureList = [pic1, pic2, pic3]
+        self.frame = 0
+        self.list = self.textureList
+
+    def cartoon(self):
+        """
+        对于有动画效果的方块，当其可以通过时，将不透明度调低
+        :return:
+        """
+        frame = 60
+        if not self.is_pass() or self.is_control():
+            self.list = self.textureList
+        else:
+            self.list = self.transparentTextureList
+
+        if self.frame < frame:
+            self.texture = self.list[self.frame // 20]
+            self.frame += 1
+        else:
+            self.frame = 0
+
+
+class KeyBlock(BaseBlock):
+    def __init__(self, id: str, location: Vector2, moveable=True, controllable=False, passable=False):
+        super().__init__(id, location, passable, moveable, controllable)
+        self._passable = True
+        self._controllable = False
+        self._moveable = True
+        self._text = False
+        self.textureList = [pygame.image.load('pics/key_0_1.png'), pygame.image.load('pics/key_0_2.png'),
+                            pygame.image.load('pics/key_0_3.png')]
+        pic1 = pygame.image.load('pics/key_0_1.png').convert_alpha()
+        pic2 = pygame.image.load('pics/key_0_2.png').convert_alpha()
+        pic3 = pygame.image.load('pics/key_0_3.png').convert_alpha()
+        pic1.set_alpha(ALPHA)
+        pic2.set_alpha(ALPHA)
+        pic3.set_alpha(ALPHA)
+        self.transparentTextureList = [pic1, pic2, pic3]
+        self.frame = 0
+        self.list = self.textureList
+
+    def cartoon(self):
+        """
+        对于有动画效果的方块，当其可以通过时，将不透明度调低
+        :return:
+        """
+        frame = 60
+        if not self.is_pass() or self.is_control():
+            self.list = self.textureList
+        else:
+            self.list = self.transparentTextureList
+
+        if self.frame < frame:
+            self.texture = self.list[self.frame // 20]
+            self.frame += 1
+        else:
+            self.frame = 0
+
+
 class FireBlock(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=False, controllable=False, passable=True):
         super().__init__(id, location, passable, moveable, controllable)
@@ -272,6 +358,7 @@ class FireBlock(BaseBlock):
         self._text = False
         self.texture = pygame.image.load('pics/fire.png')
 
+
 class PillarBlock(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=False, controllable=False, passable=True):
         super().__init__(id, location, passable, moveable, controllable)
@@ -280,6 +367,7 @@ class PillarBlock(BaseBlock):
         self._moveable = True
         self._text = False
         self.texture = pygame.image.load('pics/pillar.png')
+
 
 class Block1(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=False, controllable=False, passable=True):
@@ -310,6 +398,7 @@ class Block3(BaseBlock):
         self._text = False
         self.texture = pygame.image.load('pics/number_3.png');
 
+
 class Block4(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=False, controllable=False, passable=True):
         super().__init__(id, location, passable, moveable, controllable)
@@ -318,6 +407,7 @@ class Block4(BaseBlock):
         self._moveable = True
         self._text = False
         self.texture = pygame.image.load('pics/number_4.png');
+
 
 class Block5(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=False, controllable=False, passable=True):
@@ -328,6 +418,7 @@ class Block5(BaseBlock):
         self._text = False
         self.texture = pygame.image.load('pics/number_5.png');
 
+
 class Block6(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=False, controllable=False, passable=True):
         super().__init__(id, location, passable, moveable, controllable)
@@ -336,6 +427,7 @@ class Block6(BaseBlock):
         self._moveable = True
         self._text = False
         self.texture = pygame.image.load('pics/number_6.png');
+
 
 class Block7(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=False, controllable=False, passable=True):
@@ -346,6 +438,7 @@ class Block7(BaseBlock):
         self._text = False
         self.texture = pygame.image.load('pics/number_7.png');
 
+
 class Block8(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=False, controllable=False, passable=True):
         super().__init__(id, location, passable, moveable, controllable)
@@ -354,6 +447,7 @@ class Block8(BaseBlock):
         self._moveable = True
         self._text = False
         self.texture = pygame.image.load('pics/number_8.png');
+
 
 class Block9(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=False, controllable=False, passable=True):
@@ -374,6 +468,7 @@ class Block0(BaseBlock):
         self._text = False
         self.texture = pygame.image.load('pics/number_0.png');
 
+
 class Blockquit(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=False, controllable=False, passable=True):
         super().__init__(id, location, passable, moveable, controllable)
@@ -382,6 +477,7 @@ class Blockquit(BaseBlock):
         self._moveable = True
         self._text = False
         self.texture = pygame.image.load('pics/quit.png');
+
 
 class Blockabout(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=False, controllable=False, passable=True):
@@ -392,6 +488,7 @@ class Blockabout(BaseBlock):
         self._text = False
         self.texture = pygame.image.load('pics/about.png');
 
+
 class Blockwasd(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=False, controllable=False, passable=True):
         super().__init__(id, location, passable, moveable, controllable)
@@ -400,6 +497,7 @@ class Blockwasd(BaseBlock):
         self._moveable = True
         self._text = False
         self.texture = pygame.image.load('pics/move_.png');
+
 
 class Blockmove(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=False, controllable=False, passable=True):
@@ -410,6 +508,7 @@ class Blockmove(BaseBlock):
         self._text = False
         self.texture = pygame.image.load('pics/text_move_0_1.png');
 
+
 class TileBlock(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=False, controllable=False, passable=True):
         super().__init__(id, location, passable, moveable, controllable)
@@ -419,6 +518,7 @@ class TileBlock(BaseBlock):
         self._text = False
         self.texture = pygame.image.load('pics/tile_0_2.png').convert_alpha()
         self.texture.set_alpha(ALPHA)
+
 
 class BrickBlock(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=False, controllable=False, passable=True):
@@ -438,7 +538,6 @@ class RobotBlock(BaseBlock):
         self._moveable = True
         self._text = False
         self.texture = pygame.image.load('pics/robot.png')
-
 
 
 class YouVerbBlock(BaseBlock):
@@ -540,6 +639,30 @@ class WeakVerbBlock(BaseBlock):
         self.texture = pygame.image.load('pics/text_weak_0_1.png')
 
 
+class OpenVerbBlock(BaseBlock):
+    def __init__(self, id: str, location: Vector2, moveable=True, controllable=False,passable=False):
+        super().__init__(id, location, passable, moveable, controllable)
+        self.word = 'open'
+        self._passable = False
+        self._controllable = False
+        self._moveable = True
+        self._text = True
+        self.transparent = False
+        self.texture = pygame.image.load('pics/text_open_0_1.png')
+
+
+class ShutVerbBlock(BaseBlock):
+    def __init__(self, id: str, location: Vector2, moveable=True, controllable=False,passable=False):
+        super().__init__(id,location,passable, moveable, controllable)
+        self.word = 'shut'
+        self._passable = False
+        self._controllable = False
+        self._moveable = True
+        self._text = True
+        self.transparent = False
+        self.texture = pygame.image.load('pics/text_shut_0_1.png')
+
+
 class IsBlock(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=True, controllable=False,passable=False):
         super().__init__(id, location, passable, moveable, controllable)
@@ -613,7 +736,7 @@ class FlagNounBlock(BaseBlock):
 
 class JellyNounBlock(BaseBlock):
     def __init__(self, id: str, location: Vector2, moveable=True, controllable=False,passable=False):
-        super().__init__(id,location,passable, moveable, controllable)
+        super().__init__(id, location, passable, moveable, controllable)
         self.word = 'jelly'
         self._passable = False
         self._controllable = False
@@ -621,6 +744,30 @@ class JellyNounBlock(BaseBlock):
         self._text = True
         self.transparent = False
         self.texture = pygame.image.load('pics/text_jelly_0_1.png')
+
+
+class KeyNounBlock(BaseBlock):
+    def __init__(self, id: str, location: Vector2, moveable=True, controllable=False,passable=False):
+        super().__init__(id, location, passable, moveable, controllable)
+        self.word = 'key'
+        self._passable = False
+        self._controllable = False
+        self._moveable = True
+        self._text = True
+        self.transparent = False
+        self.texture = pygame.image.load('pics/text_key_0_1.png')
+
+
+class DoorNounBlock(BaseBlock):
+    def __init__(self, id: str, location: Vector2, moveable=True, controllable=False,passable=False):
+        super().__init__(id, location, passable, moveable, controllable)
+        self.word = 'door'
+        self._passable = False
+        self._controllable = False
+        self._moveable = True
+        self._text = True
+        self.transparent = False
+        self.texture = pygame.image.load('pics/text_door_0_1.png')
 
 
 class AboutPicture(BaseBlock):

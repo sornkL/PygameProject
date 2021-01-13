@@ -15,6 +15,8 @@ youStateStream = {}
 winStateStream = {}
 weakStateStream = {}
 defeatStateStream = {}
+openStateStream = {}
+shutStateStream = {}
 
 
 class GameRuleObserver():
@@ -88,7 +90,7 @@ class GameRuleObserver():
         else:
             return False
 
-    def _push(self, objectBlock, direction: Vector2):
+    def _push(self, objectBlock, direction: Vector2) -> None:
         """
         当方块沿某个特定方向准备移动时，如果方向上有moveable=True的方块，则调用此函数进行移动
         :param objectBlock: 某个特定的方块
@@ -108,12 +110,17 @@ class GameRuleObserver():
             for block in nextBlockLine:
                 block.location += direction
 
-    def move(self, objectBlock: Union[GeneralBlock], direction: Vector2):
+    def move(self, objectBlock: Union[GeneralBlock], direction: Vector2) -> None:
         """
         :param objectBlock: 某个特定的方块
         :param direction: 移动的方向
         :return: 无返回值，直接修改gameState中的方块位置
         """
+        _openBlockList = self._is_open()
+        _shutBlockList = self._is_shut()
+        _isOpenRemove = False
+        _isShutRemove = False
+
         if objectBlock.is_move() and objectBlock.is_control():
             _newLocation = objectBlock.location + direction
             if type(objectBlock) == BabaBlock:
@@ -124,6 +131,21 @@ class GameRuleObserver():
                 if nextBlock is None or nextBlock.is_pass():
                     objectBlock.location = _newLocation
                 else:
+                    nextBlockLine = self._is_exist_line(objectBlock, direction)
+                    for i in range(len(nextBlockLine)-1):
+                        if nextBlockLine[i] in _openBlockList and nextBlockLine[i+1] in _shutBlockList:
+                            # print(nextBlockLine[i], nextBlockLine[i+1])
+                            for unit in self._gameState.units:
+                                if unit == nextBlockLine[i]:
+                                    _isOpenRemove = True
+                                if unit == nextBlockLine[i+1]:
+                                    _isShutRemove = True
+
+                            if _isOpenRemove:
+                                self._gameState.units.remove(nextBlockLine[i])
+                            if _isShutRemove:
+                                self._gameState.units.remove(nextBlockLine[i+1])
+
                     if not self._is_collide(objectBlock, direction):
                         self._push(objectBlock, direction)
 
@@ -320,6 +342,34 @@ class GameRuleObserver():
         else:
             return False, _compareList
 
+    def _is_open(self) -> list:
+        """
+        将具有open属性的方块添加至list中并返回
+        :return: 所有具有open属性的方块list
+        """
+        _openBlockList = []
+        for blockNounName in openStateStream:
+            if openStateStream[blockNounName]:
+                targetOpenBlock = "".join(blockNounName.split('Noun'))
+                for unit in self._gameState.units:
+                    if unit.is_move() and type(unit).__name__ == targetOpenBlock:
+                        _openBlockList.append(unit)
+        return _openBlockList
+
+    def _is_shut(self) -> list:
+        """
+        将具有shut属性的方块添加至list中并返回
+        :return: 所有具有shut属性的方块list
+        """
+        _shutBlockList = []
+        for blockNounName in shutStateStream:
+            if shutStateStream[blockNounName]:
+                targetShutBlock = "".join(blockNounName.split('Noun'))
+                for unit in self._gameState.units:
+                    if not unit.is_move() and type(unit).__name__ == targetShutBlock:
+                        _shutBlockList.append(unit)
+        return _shutBlockList
+
     def _update_state(self, stateStream: dict, objectBlockList: list, targetWord: str) -> None:
         """
         更新当前所有语法方块的状态，Python dict的key值表示方块名字，value值（bool）表示当前方块是否有某个状态
@@ -368,6 +418,8 @@ class GameRuleObserver():
         self._update_state(winStateStream, objectBlockList, 'win')
         self._update_state(weakStateStream, objectBlockList, 'weak')
         self._update_state(defeatStateStream, objectBlockList, 'defeat')
+        self._update_state(openStateStream, objectBlockList, 'open')
+        self._update_state(shutStateStream, objectBlockList, 'shut')
 
         for blockNounName in stopStateStream:
             targetBlockName = "".join(blockNounName.split('Noun'))
